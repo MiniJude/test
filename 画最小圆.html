@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<canvas id="myCanvas" width="400" height="400" style="border:1px solid #000000;"></canvas>
+
+<script>
+function drawCircle(ctx, center, radius) {
+  ctx.beginPath();
+  ctx.arc(center.x, center.y, radius, 0, 2 * Math.PI);
+  ctx.stroke();
+}
+
+function getCircleFromThreePoints(p1, p2, p3) {
+  const offset = Math.pow(p2.x, 2) + Math.pow(p2.y, 2);
+  const bc = (Math.pow(p1.x, 2) + Math.pow(p1.y, 2) - offset) / 2;
+  const cd = (offset - Math.pow(p3.x, 2) - Math.pow(p3.y, 2)) / 2;
+  const det = (p1.x - p2.x) * (p2.y - p3.y) - (p2.x - p3.x) * (p1.y - p2.y);
+
+  if (Math.abs(det) < 1e-10) return null; // 三点共线，无法构成圆
+
+  const idet = 1 / det;
+
+  const center = {
+    x: (bc * (p2.y - p3.y) - cd * (p1.y - p2.y)) * idet,
+    y: (cd * (p1.x - p2.x) - bc * (p2.x - p3.x)) * idet
+  };
+
+  const radius = Math.sqrt(Math.pow(p1.x - center.x, 2) + Math.pow(p1.y - center.y, 2));
+
+  return {center, radius};
+}
+
+function isPointInsideCircle(point, circle) {
+  const distance = Math.sqrt(Math.pow(point.x - circle.center.x, 2) + Math.pow(point.y - circle.center.y, 2));
+  return distance <= circle.radius;
+}
+
+function getCircleFromTwoPoints(p1, p2) {
+  const center = {
+    x: (p1.x + p2.x) / 2,
+    y: (p1.y + p2.y) / 2
+  };
+  const radius = Math.sqrt(Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2)) / 2;
+  return { center, radius };
+}
+
+function findMinimumCircle(points) {
+  if (points.length === 2) {
+    // 对于只有两个点的特殊情况，直接返回通过这两点的最小圆
+    return getCircleFromTwoPoints(points[0], points[1]);
+  }
+
+  let minimumCircle = null;
+
+  // 遍历所有三点组合以找到可能的圆
+  for (let i = 0; i < points.length; i++) {
+    for (let j = i + 1; j < points.length; j++) {
+      // 对于每一对点，计算最小圆，并检查是否是当前最小的
+      const circleFromTwoPoints = getCircleFromTwoPoints(points[i], points[j]);
+      let allInsideTwoPoints = true;
+      for (const point of points) {
+        if (!isPointInsideCircle(point, circleFromTwoPoints)) {
+          allInsideTwoPoints = false;
+          break;
+        }
+      }
+      if (allInsideTwoPoints) {
+        if (minimumCircle === null || circleFromTwoPoints.radius < minimumCircle.radius) {
+          minimumCircle = circleFromTwoPoints;
+        }
+      }
+
+      for (let k = j + 1; k < points.length; k++) {
+        const tempCircle = getCircleFromThreePoints(points[i], points[j], points[k]);
+        if (tempCircle) {
+          let allInside = true;
+          // 检查所有点是否在圆内
+          for (const point of points) {
+            if (!isPointInsideCircle(point, tempCircle)) {
+              allInside = false;
+              break;
+            }
+          }
+          // 如果所有点都在圆内，检查是否是迄今为止的最小圆
+          if (allInside) {
+            if (minimumCircle === null || tempCircle.radius < minimumCircle.radius) {
+              minimumCircle = tempCircle;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // 返回最小的圆，如果没有找到则为null
+  return minimumCircle;
+}
+
+
+const points = [{x: 50, y: 70}, {x: 150, y: 80}, {x: 100, y: 200}, {x: 80, y: 150}, {x: 200, y: 100}];
+const canvas = document.getElementById('myCanvas');
+const ctx = canvas.getContext('2d');
+
+// 寻找覆盖所有点的最小圆
+const boundingCircle = findMinimumCircle(points);
+const pointRadius = 2;
+
+if (boundingCircle) {
+  // 绘制所有点
+  points.forEach(point => {
+    drawCircle(ctx, point, pointRadius); // 使用较小的半径来表示点
+  });
+  // 绘制最小覆盖圆
+  drawCircle(ctx, boundingCircle.center, boundingCircle.radius+pointRadius);
+} else {
+  console.log("无法找到覆盖所有点的圆");
+}
+</script>
+
+</body>
+</html>

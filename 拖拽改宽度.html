@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<body>
+<div style="display: flex;">
+    <div>
+        这是左侧的盒子
+    </div>
+    <div id="mydiv" style="border:1px solid black;width:100px;height:100px;position:relative;">
+        <div id="resizer" style="width:4px;height:100%;position:absolute;right:0;top:0;cursor:e-resize;border-right:2px solid red;transition:all ease 0.2s;opacity: 0;"></div>
+    </div>
+</div>
+
+<script>
+// 获取元素
+var elem = document.getElementById("mydiv");
+var resizer = document.getElementById("resizer");
+
+// 初始化宽度和鼠标的 x 坐标
+var width = 0, x = 0;
+
+// 监听 mousedown 事件
+resizer.addEventListener("mousedown", function(e) {
+    // 阻止事件冒泡，防止选中
+    e.stopPropagation();
+    e.preventDefault();
+
+    // 获取初始宽度
+    width = elem.offsetWidth;
+
+    // 获取鼠标的 x 坐标
+    x = e.clientX;
+
+    // 在文档上添加 mousemove 和 mouseup 事件监听器
+    document.addEventListener("mousemove", resize);
+    document.addEventListener("mouseup", stopResize);
+});
+
+// 定义 resize 函数
+function resize(e) {
+    // 计算新的宽度
+    var newWidth = width + e.clientX - x;
+
+    // 设置元素的新宽度
+    elem.style.width = newWidth + "px";
+}
+
+// 定义 stopResize 函数
+function stopResize() {
+    // 删除 mousemove 和 mouseup 事件监听器
+    document.removeEventListener("mousemove", resize);
+    document.removeEventListener("mouseup", stopResize);
+}
+</script>
+
+<style>
+#resizer:hover {
+    border-right-width: 2px;
+    opacity: 1!important;
+}
+</style>
+
+</body>
+</html>

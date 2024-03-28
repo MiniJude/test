@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  canvas {
+    border: none;
+    border-radius: 50%;
+  }
+</style>
+</head>
+<body>
+
+<canvas id="dial" width="136" height="136"></canvas>
+
+<script>
+  const canvas = document.getElementById('dial');
+  const ctx = canvas.getContext('2d');
+  const radius = canvas.width / 2;
+  const ballRadius = 6;
+  let n = 100;
+
+  ctx.translate(radius, radius); // Move to the center of the canvas
+
+  function formatTime(ms) {
+    let seconds = Math.floor(ms / 1000);
+    let minutes = Math.floor(seconds / 60);
+    seconds = seconds % 60;
+    // 补零操作
+    minutes = minutes.toString().padStart(2, '0');
+    seconds = seconds.toString().padStart(2, '0');
+    return minutes + ":" + seconds;
+  }
+
+  function drawBall(totalMillisecond, remainMillisecond) {
+    
+    if(totalMillisecond==0){
+        totalMillisecond=1;
+    }
+
+    if(remainMillisecond <= 0)
+    {
+        return;
+    }
+
+    if(remainMillisecond > totalMillisecond){
+        remainMillisecond = totalMillisecond;
+    }
+    const angle=((remainMillisecond / totalMillisecond) * 360) * (Math.PI / 180);
+    // 绘制表盘
+    ctx.clearRect(-radius, -radius, canvas.width, canvas.height); // Clear the canvas for the next frame
+    if(remainMillisecond<10000){
+        ctx.fillStyle = '#FFF8F8'; 
+    } else {
+        ctx.fillStyle = '#F1F4FE'; 
+    }
+
+    ctx.fillRect(-radius, -radius, canvas.width, canvas.height); // 使用fillRect覆盖整个画布区域
+
+    // 创建圆形内阴影
+    ctx.save(); // 保存当前状态
+    ctx.beginPath();
+    ctx.arc(0, 0, radius, 0, Math.PI * 2, true); // 绘制大圆
+    ctx.arc(0, 0, radius+3, 0, Math.PI * 2, true); // 绘制大圆
+    ctx.fillStyle = '#FFFFFF'; // 设置填充颜色为白色
+    if(remainMillisecond<10000){
+        ctx.shadowColor = 'rgba(230, 91, 86, 0.3)'; // 设置红阴影颜色
+    } else {
+        ctx.shadowColor = 'rgba(84, 120, 238, 0.3)'; // 设置蓝阴影颜色
+    }
+
+    ctx.shadowBlur = 3; // 设置阴影的模糊级别
+    ctx.shadowOffsetX = 0; // 设置阴影在x轴的偏移量
+    ctx.shadowOffsetY = 0; // 设置阴影在y轴的偏移量
+    ctx.fill('evenodd'); // 使用evenodd规则填充，创建内阴影效果
+    ctx.restore(); // 恢复状态到save()时
+    // 内阴影结束
+
+    
+    // 绘制剩余弧线
+    const gradient = ctx.createLinearGradient(0, -radius, 0, radius);
+    if(remainMillisecond<10000){
+        // 小于十秒用红色填充
+        gradient.addColorStop(1, '#D71310');
+        gradient.addColorStop(0, '#FF9593');
+    } else {
+        gradient.addColorStop(1, '#5478EE');
+        gradient.addColorStop(0, '#88B3FD');
+    }
+
+    ctx.beginPath(); // 开始一条新路径
+    const endDegree = angle - Math.PI / 2
+    const startDegtree = 1.5*Math.PI
+    ctx.arc(0, 0, radius - ballRadius*2+3, startDegtree, endDegree, false); // 绘制弧线
+    ctx.strokeStyle = gradient; // 设置弧线渐变颜色
+    ctx.lineWidth = 4; // 设置弧线宽度为4px
+    ctx.lineCap = 'round'; 
+    ctx.stroke(); // 描边当前路径
+    // 绘制剩余时间的弧线结束
+
+    if(remainMillisecond<10000){
+        ctx.shadowColor = 'rgba(230, 91, 86, 0.5)'; // 设置红阴影颜色
+    } else {
+        ctx.shadowColor = 'rgba(84, 120, 238, 0.5)'; // 设置蓝色阴影颜色
+    }
+
+    ctx.shadowBlur = 3; // 阴影的模糊级别
+    ctx.shadowOffsetX = 0; // 阴影在x轴的偏移量
+    ctx.shadowOffsetY = 0; // 阴影在y轴的偏移量
+    ctx.beginPath();
+    ctx.arc(0, 0, radius - ballRadius*2, 0, 2 * Math.PI); // Draw the dial
+    ctx.fillStyle = '#FFFFFF';
+    ctx.fill();
+    ctx.strokeStyle = 'transparent';
+    ctx.stroke();
+    // 清除阴影，以便它不影响之后的绘制
+    ctx.shadowColor = 'transparent';
+    ctx.shadowBlur = 0;
+    ctx.shadowOffsetX = 0;
+    ctx.shadowOffsetY = 0;
+
+    
+    // 创建小球阴影效果
+    if(remainMillisecond<10000){
+        ctx.shadowColor = 'rgba(230, 91, 86, 0.5)'; // 设置红阴影颜色
+     } else {
+         ctx.shadowColor = 'rgba(84, 120, 238, 0.5)'; // 设置蓝色阴影颜色
+    }
+
+    ctx.shadowBlur = 3; // 阴影的模糊级别
+    ctx.shadowOffsetX = 0; // 阴影在x轴的偏移量
+    ctx.shadowOffsetY = 0; // 阴影在y轴的偏移量
+    const x = (radius - ballRadius-3) * Math.cos(angle - Math.PI / 2); // Calculate the x position
+    const y = (radius - ballRadius-3) * Math.sin(angle - Math.PI / 2); // Calculate the y position
+    
+    ctx.beginPath();
+    ctx.arc(x, y, ballRadius, 0, 2 * Math.PI); // Draw the ball
+    ctx.fillStyle = '#FFFFFF';
+    ctx.fill();
+    ctx.strokeStyle = 'transparent';
+    ctx.stroke();
+
+      // 清除阴影，以便它不影响之后的绘制
+    ctx.shadowColor = 'transparent';
+    ctx.shadowBlur = 0;
+    ctx.shadowOffsetX = 0;
+    ctx.shadowOffsetY = 0;
+
+    const remainingTime = formatTime(remainMillisecond);
+    ctx.font = '500 24px "PingFang SC", "Microsoft YaHei"'; // 设置字号及字体
+    ctx.textAlign = 'center'; // 水平居中
+    ctx.textBaseline = 'middle'; // 垂直居中
+    ctx.fillStyle = (remainMillisecond < 10000) ? '#D71310' : '#5478EE'; // 小于10秒显示红色，否则显示蓝色
+    ctx.fillText(remainingTime, 0, 3); // 在圆心绘制剩余时间
+  }
+
+  const questionTimeLimit = 20;  //答题时长20秒
+  const startTime = new Date();
+  const endTime =  new Date() ;
+  endTime.setSeconds(endTime.getSeconds()+questionTimeLimit);
+  let intervalMillisecond = 10; //刷新间隔时长，单位是毫秒
+
+  const interval = setInterval(() => {
+    const currentTime = new Date();
+    if (currentTime < endTime) {
+        drawBall(endTime-startTime,endTime-currentTime);
+    } else {
+      clearInterval(interval); // Stop the timer when n reaches 0
+    }
+  }, intervalMillisecond);
+</script>
+
+</body>
+</html>
