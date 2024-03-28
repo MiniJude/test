@@ -1,31 +1,38 @@
 <html>
+
 <head>
     <title>DeviceOrientationEvent</title>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <script src="js/common/jquery.min.js"></script>
-    <script src="js/common/eventutil.js"></script>
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="https://unpkg.com/vconsole@latest/dist/vconsole.min.js"></script>
 </head>
+
 <body>
-    <div id="arrow"></div>
+    <button onclick="requestDeviceOrientation()">允许</button>
 </body>
+
 </html>
- 
- 
+
+
 <script>
-    try {
-        var text = "";
-        window.addEventListener("deviceorientation", orientationHandler, false);
-        function orientationHandler(event) {
-            text = ""
-            var arrow = document.getElementById("arrow");
-            text += "左右旋转：rotate alpha{" + Math.round(event.alpha) + "deg)<p>";
-            text += "前后旋转：rotate beta{" + Math.round(event.beta) + "deg)<p>";
-            text += "扭转设备：rotate gamma{" + Math.round(event.gamma) + "deg)<p>";
-            arrow.innerHTML = text;
+    var vConsole = new window.VConsole();
+
+
+    function requestDeviceOrientation() {
+        if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
+            DeviceOrientationEvent.requestPermission()
+                .then(permissionState => {
+                    console.log(permissionState)
+                    if (permissionState === 'granted') {
+                        window.addEventListener('deviceorientation', () => { console.log('哈哈哈') });
+                    }
+                })
+                .catch(console.error);
+        } else {
+            // handle regular non iOS 13+ devices
+            console.log("not iOS");
         }
     }
-    catch (e) {
-        $("#arrow").html(e.message)
-    }
+
 </script>
