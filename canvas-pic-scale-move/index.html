@@ -12,12 +12,14 @@
       margin: 0px auto;
       display: block;
     }
+
     .options {
       display: flex;
       justify-content: center;
       height: 44px;
       align-items: center;
     }
+
     button {
       margin-left: 15px;
     }
@@ -37,7 +39,7 @@
       curOffset = { x: 0, y: 0 }; // 记录上一次的偏移量
       mousePosition = { x: 0, y: 0 }; // 记录鼠标滚轮点击时的坐标位置
       maxScale = 8;
-      minScale = 0.4;
+      minScale = 1;
       scaleStep = 0.2;
       scale = 1;
       preScale = 1;
@@ -48,15 +50,24 @@
       constructor(id, options = {
         width: 600,
         height: 400,
-        imgSrc: 'https://zhanglibo-exam.obs.cn-north-4.myhuaweicloud.com/idcard/bc0b0a9f-996b-44f6-ad95-4d57a6b76763/idcardfront.png?Expires=1706603642&AccessKeyId=TWGBWRLVSEB3UWEBKBXR&Signature=SInMNlVw%2BiteM%2B5LU24mvNTiiVA%3D'
+        imgSrc: '../img/1.jpg'
       }) {
         this.canvas = document.querySelector('#' + id)
+        this.canvas.style.cursor = 'grab';
         this.width = options.width;
         this.height = options.height;
         this.canvas.width = options.width;
         this.canvas.height = options.height;
-        this.imgSrc = options.imgSrc
         this.ctx = this.canvas.getContext('2d');
+
+        this.imgSrc = options.imgSrc;
+        this.img = new Image()
+        if (this.imgSrc) {
+          this.img.src = this.imgSrc;
+          this.img.onload = () => {
+            this.draw();
+          };
+        }
 
         this.onMousedown = this.onMousedown.bind(this);
         this.onMousemove = this.onMousemove.bind(this);
@@ -94,7 +105,7 @@
         this.offset.x = this.mousePosition.x - (this.mousePosition.x - this.offset.x) * this.scale / this.preScale;
         this.offset.y = this.mousePosition.y - (this.mousePosition.y - this.offset.y) * this.scale / this.preScale;
 
-        this.paint(this.ctx);
+        this.paint();
         this.preScale = this.scale;
         this.curOffset.x = this.offset.x;
         this.curOffset.y = this.offset.y;
@@ -105,21 +116,29 @@
           // 鼠标左键
           this.x = e.x;
           this.y = e.y
+
+          // 设置拖拽时的样式
+          this.canvas.style.cursor = 'grabbing';
+
           window.addEventListener('mousemove', this.onMousemove);
           window.addEventListener('mouseup', this.onMouseup)
         }
       }
 
       onMousemove(e) {
-       this.offset.x = this.curOffset.x + (e.x - this.x);
-       this.offset.y = this.curOffset.y + (e.y - this.y);
+        this.offset.x = this.curOffset.x + (e.x - this.x);
+        this.offset.y = this.curOffset.y + (e.y - this.y);
 
-       this.paint();
+        this.paint();
       }
 
       onMouseup() {
         this.curOffset.x = this.offset.x;
         this.curOffset.y = this.offset.y;
+
+        // 恢复正常样式
+        this.canvas.style.cursor = 'grab';
+
         window.removeEventListener('mousemove', this.onMousemove);
         window.removeEventListener('mouseup', this.onMouseup);
       }
@@ -147,7 +166,7 @@
       }
 
       // 重置
-      reset = function () {
+      reset() {
         this.clear();
         this.scale = 1; // 当前缩放
         this.preScale = 1; // 上一次缩放
@@ -158,9 +177,24 @@
       };
 
       draw() {
-        var img = new Image();
-        img.src = this.imgSrc;
-        this.ctx.drawImage(img, 0, 0, this.width, this.height);
+        // 计算图片绘制的起始坐标和宽高，以实现 'contain' 效果并使其居中
+        let aspectRatio = this.img.width / this.img.height;
+        let canvasAspectRatio = this.width / this.height;
+
+        let drawWidth, drawHeight, drawX, drawY;
+
+        if (aspectRatio > canvasAspectRatio) {
+          drawWidth = this.width * this.scale;
+          drawHeight = drawWidth / aspectRatio;
+        } else {
+          drawHeight = this.height * this.scale;
+          drawWidth = drawHeight * aspectRatio;
+        }
+
+        drawX = (this.width - drawWidth) / 2 + this.offset.x / this.scale;
+        drawY = (this.height - drawHeight) / 2 + this.offset.y / this.scale;
+
+        this.ctx.drawImage(this.img, drawX, drawY, drawWidth, drawHeight);
       }
 
       clear() {

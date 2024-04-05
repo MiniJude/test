@@ -4,17 +4,319 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>纯html测试</title>
+    <link rel="stylesheet" href="https://unpkg.com/modern-css-reset/dist/reset.min.css" />
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
+
+        .welcome {
+            height: 100%;
+            display: flex;
+            padding: 0 10vw;
+        }
+
+        .welcome-left {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .welcome-left h1 {
+            font-size: 1.88vw;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .welcome-left h2 {
+            margin-top: 0.83vw;
+            font-size: 1.25vw;
+            color: rgba(0, 0, 0, 0.65);
+        }
+
+        .swipper-wrapper {
+            flex: 1;
+            min-height: 0;
+            margin-top: 1.4vw;
+            position: relative;
+            user-select: none;
+
+            .swipper-item {
+                position: absolute;
+                top: 0;
+                width: 15.63vw;
+                height: 3.13vw;
+                border-radius: 0.42vw;
+                color: rgba(0, 0, 0, 0.85);
+                display: flex;
+                align-items: center;
+                font-size: 1.04vw;
+                padding-left: 2.08vw;
+                cursor: pointer;
+                transition: all ease .5s;
+
+                .swipper-item-icon {
+                    margin-right: 0.9375vw;
+                    width: 1.25vw;
+                    height: 1.25vw;
+                }
+            }
+        }
+
+        .welcome-right {
+            flex: 1;
+            min-width: 0;
+            width: 34.64vw;
+            background: linear-gradient(43deg, #def0ff 0%, #e4eaff 53%, #e1e0ff 100%);
+            border-radius: 0.42vw;
+            padding: 2.5vw 2.19vw 0 2.19vw;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .welcome-right h1 {
+            margin-top: 1.77vw;
+            margin-bottom: 0.83vw;
+            font-size: 1.66vw;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        
+        .welcome-right iframe {
+            flex: 1;
+            min-height: 0;
+        }
+
+        .welcome-right .desc-item {
+            font-size: 0.83vw;
+            color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            line-height: 1.25vw;
+
+            &::before {
+                display: inline-block;
+                content: '';
+                width: 0.21vw;
+                height: 0.21vw;
+                border-radius: 50%;
+                background-color: #5478EE;
+                margin-right: 0.42vw;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <button onclick="handleClick()">deviceorientation</button>
-
-
+    <div id="app" class="welcome">
+        <div class="welcome-left">
+            <ul class="swipper-wrapper" @mousedown="startSwipe" @mousemove="swipe" @mouseup="endSwipe"
+                @mouseleave="endSwipe" @wheel="wheel">
+                <li class="swipper-item" v-for="(item, index) in list" :class="{ active: index === activeIndex }"
+                    :style="getSwiperItemStyle(index)" @click="activeIndex = index">
+                    {{ item.title }}
+                </li>
+            </ul>
+        </div>
+        <div class="welcome-right">
+            <h1>{{ list[activeIndex].title }}</h1>
+            <div class="desc-item" v-for="d in list[activeIndex].desc">{{ d }}</div>
+            <iframe width="100%" :src="list[activeIndex].link" frameborder="0"></iframe>
+        </div>
+    </div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/@vueuse/shared"></script>
+    <script src="https://unpkg.com/@vueuse/core"></script>
     <script>
-        function handleClick() {
-            window.location.href = './test.html'
-        }
+        const { useIntervalFn, useTimeoutFn } = VueUse
+        const { createApp, ref, computed } = Vue
+
+        createApp({
+            setup() {
+                const NUM = 7 // 展示的卡片数量（奇数）
+
+                const list = [
+                    {
+                        title: 'canvas倒计时',
+                        link: './canvas-count-down/index.html',
+                        desc: [
+                            '使用canvas绘制倒计时',
+                        ]
+                    },
+                    {
+                        title: '最小覆盖圆',
+                        link: './minimum-coverage-circle/index.html',
+                        desc: [
+                            '根据给定的点绘制最小覆盖圆',
+                        ]
+                    },
+                    {
+                        title: 'canvas-pic-scale-move',
+                        link: './canvas-pic-scale-move/index.html',
+                        desc: [
+                            'canvas画板内的图片缩放和移动',
+                        ]
+                    },
+                ]
+
+                const activeIndex = ref(0)
+
+                const { pause, resume } = useIntervalFn(() => {
+                    activeIndex.value = (activeIndex.value + 1) % list.length
+                }, 7000)
+
+                const { start: startTimeoutFn, stop: stopTimeoutFn } = useTimeoutFn(resume, 5000)
+
+                function getSurroundingNumbers(length, activeIndex) {
+                    var start = activeIndex - (NUM - 1) / 2;
+                    var end = activeIndex + (NUM + 1) / 2;
+
+                    if (activeIndex < (NUM - 1) / 2) {
+                        start = 0;
+                        end = NUM;
+                    }
+
+                    if (activeIndex > length - (NUM + 1) / 2) {
+                        start = length - NUM;
+                        end = length;
+                    }
+
+                    var result = [];
+                    for (var i = start; i < end; i++) {
+                        result.push(i);
+                    }
+
+                    return result;
+                }
+                const surroundingNumbers = computed(() => getSurroundingNumbers(list.length, activeIndex.value))
+
+                function getSwiperItemStyle(index) {
+                    const HIDEH = 15,
+                        H = 60,
+                        M = 16
+                    // 每个卡片高度60px 间隔16px
+                    // 最多正常展示NUM个，其余藏在后，只露出16px高度
+                    let y = 0,
+                        scaleX = 1,
+                        backgroundColor = '#f9fbfc',
+                        zIndex = 99,
+                        boxShadow = '2px 2px 1px 0px rgba(0,0,0,0.04), #fff 0px -2px 0px 0px';
+
+                    if (!surroundingNumbers.value.includes(index)) {
+                        backgroundColor = '#EBEDF2'
+                        zIndex = zIndex - Math.abs(activeIndex.value - index) + 2
+                        scaleX = 0.98 ** (Math.abs(activeIndex.value - index) + 2)
+
+                        if (index < surroundingNumbers.value[0]) {
+                            // 在上面
+                            y = HIDEH * index
+                            scaleX = 0.98 ** (surroundingNumbers.value[0] - index)
+                            boxShadow = '2px 2px 1px 0px rgba(255, 255, 255, .3) inset';
+                        } else {
+                            // 在下面
+                            y = surroundingNumbers.value[0] * HIDEH + (NUM - 1) * (H + M) + (index - surroundingNumbers.value.at(-1)) * HIDEH
+                            scaleX = 0.98 ** (index - surroundingNumbers.value.at(-1))
+                            boxShadow = '2px 2px 1px 0px rgba(0,0,0,0.04)';
+                        }
+                    } else {
+                        y = surroundingNumbers.value[0] * HIDEH + (index - surroundingNumbers.value[0]) * (H + M)
+                    }
+
+                    if (activeIndex.value === index) {
+                        boxShadow = '5px 6px 12px 0px rgba(0,0,0,0.08), #fff 0px -2px 0px 0px';
+                    }
+
+
+                    return {
+                        transform: 'translateY(' + y / 19.2 + 'vw) scaleX(' + scaleX + ')',
+                        backgroundColor,
+                        zIndex,
+                        boxShadow
+                    }
+                }
+
+
+                // 处理滑动
+                let startY = 0; // 鼠标按下时的y坐标
+                let accumulatedDiffY = 0; // 累积的滑动距离
+                let swiping = false; // 是否正在滑动
+
+                function startSwipe(event) {
+                    startY = event.clientY;
+                    swiping = true;
+                    pause()
+                    stopTimeoutFn()
+                }
+
+                function swipe(event) {
+                    if (!swiping) return;
+                    const currentY = event.clientY;
+                    const diffY = currentY - startY;
+
+                    // 累积滑动距离
+                    accumulatedDiffY += diffY;
+
+                    // 假设每个元素的高度是100px
+                    const elementHeight = 84;
+
+                    // 使用累积的滑动距离计算滑动的元素数量，向下取整
+                    const numItems = Math.floor(Math.abs(accumulatedDiffY) / elementHeight);
+
+                    if (accumulatedDiffY > 0) {
+                        // 向下滑动，activeIndex减少
+                        if (activeIndex.value <= 2) return
+                        activeIndex.value = Math.min(list.length - 3, activeIndex.value)
+                        activeIndex.value = Math.max(0, activeIndex.value - numItems);
+                        accumulatedDiffY -= numItems * elementHeight; // 更新累积的滑动距离
+                    } else {
+                        // 向上滑动，activeIndex增加
+                        if (activeIndex.value >= list.length - 3) return
+                        activeIndex.value = Math.max(2, activeIndex.value)
+                        activeIndex.value = Math.min(list.length - 1, activeIndex.value + numItems);
+                        accumulatedDiffY += numItems * elementHeight; // 更新累积的滑动距离
+                    }
+
+                    // 更新起始Y坐标
+                    startY = currentY;
+                }
+
+                function endSwipe(event) {
+                    swiping = false;
+                    accumulatedDiffY = 0; // 结束滑动时重置累积的滑动距离
+                    startTimeoutFn()
+                }
+
+                // 处理鼠标滚动
+                function wheel(event) {
+                    event.preventDefault(); // 防止页面滚动
+                    pause()
+                    stopTimeoutFn()
+                    if (event.deltaY < 0) {
+                        // 向下滚动，activeIndex减少
+                        activeIndex.value = Math.max(0, activeIndex.value - 1);
+                    } else {
+                        // 向上滚动，activeIndex增加
+                        activeIndex.value = Math.min(list.length - 1, activeIndex.value + 1);
+                    }
+                    startTimeoutFn()
+                }
+
+                return {
+                    list,
+                    activeIndex,
+                    startSwipe,
+                    swipe,
+                    endSwipe,
+                    wheel,
+                    getSwiperItemStyle
+                }
+            }
+        }).mount('#app')
     </script>
 </body>
 
