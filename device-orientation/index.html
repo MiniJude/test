@@ -36,7 +36,7 @@
     }
 
     window.addEventListener("deviceorientation", (event) => {
-        document.getElementById("txt").innerHTML = `alpha: ${event.alpha} beta: ${event.beta} gamma: ${event.gamma}`;
+        document.getElementById("txt").innerHTML = `alpha: ${event.alpha} beta: ${event.beta} gamma: ${event.gamma} webkitCompassHeading: ${event.webkitCompassHeading} webkitCompassAccuracy: ${event.webkitCompassAccuracy}`;
     });
 
 </script>
