@@ -75,8 +75,11 @@
     window.addEventListener("deviceorientation", (evt) => {
         var heading = null;
 
+        console.log('absolute:', absolute)
+        console.log('evt:', evt)
         if (evt.absolute === true && evt.alpha !== null) {
             heading = compassHeading(evt.alpha, evt.beta, evt.gamma);
+            console.log(heading)
         }
         document.getElementById("txt").innerHTML = heading;
 
