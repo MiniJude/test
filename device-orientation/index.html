@@ -10,6 +10,7 @@
 
 <body>
     <button onclick="requestDeviceOrientation()">允许</button>
+    <p id="txt"></p>
 </body>
 
 </html>
@@ -25,7 +26,6 @@
                 .then(permissionState => {
                     console.log(permissionState)
                     if (permissionState === 'granted') {
-                        window.addEventListener('deviceorientation', () => { console.log('哈哈哈') });
                     }
                 })
                 .catch(console.error);
@@ -34,5 +34,9 @@
             console.log("not iOS");
         }
     }
+
+    window.addEventListener("deviceorientation", (event) => {
+        document.getElementById("txt").innerHTML = `alpha: ${event.alpha} beta: ${event.beta} gamma: ${event.gamma}`;
+    });
 
 </script>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="arrow"
+        style="width: 100px; height: 100px;display: flex;align-items: center;justify-content: center;transition: all ease 1s;">
+        ↑
+    </div>
+    <input id="ipt" type="text" onchange="handleClick()">
+    <script>
+        function hook() {
+
+            let accAngle,
+                oldAngle = 0,
+                newAngle = 0;
+            function getAccAngle(angle) {
+
+                if (typeof angle !== 'number') return angle;
+
+                oldAngle = newAngle;
+                newAngle = angle;
+                if (accAngle === undefined) {
+                    accAngle = newAngle
+                } else {
+                    let diff = newAngle - oldAngle;
+                    let absDiff = Math.abs(diff);
+                    if (diff >= 180) {
+                        accAngle -= 360 - absDiff;
+                    } else if ((diff >= 0 && diff < 180)) {
+                        accAngle += absDiff;
+                    } else if (diff < 0 && diff > -180) {
+                        accAngle -= absDiff;
+                    } else if (diff <= -180) {
+                        accAngle += 360 - absDiff;
+                    }
+                }
+                return accAngle
+            }
+
+            return {
+                getAccAngle
+            };
+        }
+
+        const { getAccAngle } = hook()
+
+
+        function handleClick(e) {
+            let ele = document.querySelector('#ipt')
+            let angle = Number(ele.value)
+            let newAngle = getAccAngle(angle)
+
+            document.querySelector('.arrow').style.transform = `rotate(${newAngle}deg)`
+        }
+
+    </script>
+</body>
+
+</html>
