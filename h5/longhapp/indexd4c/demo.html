@@ -1,0 +1,1290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta HTTP-EQUIV="Pragma" CONTENT="no-cache">
+    <meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache">
+    <meta HTTP-EQUIV="Expires" CONTENT="0">
+    <meta charset="UTF-8">
+    <title>康乐臻选(尊享版)</title>
+    <script src="/longhapp/Public/Home/js/d4/jquery-2.1.4.js"></script>
+    <script src="/longhapp/Public/Home/js/d4/ind.js"></script>
+    <link rel="stylesheet" href="/longhapp/Public/Home/css/d4/lCalendar.css">
+    <link rel="stylesheet" href="/longhapp/Public/Home/css/d4/index.css">
+    <link href="/longhapp/Public/Home/css/d4/style.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="/longhapp/Public/Home/css/d4/lCalendar.css">
+</head>
+
+<body style="background:#4a9b9f;">
+    <script>
+        var winWidth = $(window).width();
+        winWidth > 640 ? winWidth = 640 : winWidth;
+        $('html').css('font-size', winWidth / 6.4 + 'px');
+    </script><!-- start -->
+    <div class="clear"></div>
+    <div class="con" style="background:url(/longhapp/Public/Home/images/d4/bj2.jpg) no-repeat top/cover;">
+        <div class="con2">
+            <!-- logo --><!-- <div class="c2-logo"><img src="/longhapp/Public/Home/images/d4/logo.png"></div> --><!-- <img src="/longhapp/Public/Home/images/d4/c2-tit.png" class="c2-tit"> -->
+            <div class="con2_form">
+                <form>
+                    <p><span>姓名</span><input type="text" class="xingming" placeholder="请输入姓名" /></p>
+                    <p><span style="padding-top:1px;">性别</span><i><em class="xingbie"><a href="javascript:;"
+                                    class="active" data-in="0">男</a><a href="javascript:;" data-in="1">女</a></em></i>
+                    </p>
+                    <p><span
+                            style="padding-top:2px;">年龄</span><!-- <b class="time yanshi1_1 ys_birth"><input type="text" id="demo1" name="" class="" placeholder="生日（选择）" value="" readonly></b><em class="nianling bj_new"><i id="sui1">0</i>岁</em> --><em
+                            class="b-t-select" style="width: 83%;"><select id="sui1">
+                                <option disabled selected hidden style="display:none;color:#ccc;" value="">请选择年龄
+                                </option>
+                                <option value="0">0岁</option>
+                                <option value="1">1岁</option>
+                                <option value="2">2岁</option>
+                                <option value="3">3岁</option>
+                                <option value="4">4岁</option>
+                                <option value="5">5岁</option>
+                                <option value="6">6岁</option>
+                                <option value="7">7岁</option>
+                                <option value="8">8岁</option>
+                                <option value="9">9岁</option>
+                                <option value="10">10岁</option>
+                                <option value="11">11岁</option>
+                                <option value="12">12岁</option>
+                                <option value="13">13岁</option>
+                                <option value="14">14岁</option>
+                                <option value="15">15岁</option>
+                                <option value="16">16岁</option>
+                                <option value="17">17岁</option>
+                                <option value="18">18岁</option>
+                                <option value="19">19岁</option>
+                                <option value="20">20岁</option>
+                                <option value="21">21岁</option>
+                                <option value="22">22岁</option>
+                                <option value="23">23岁</option>
+                                <option value="24">24岁</option>
+                                <option value="25">25岁</option>
+                                <option value="26">26岁</option>
+                                <option value="27">27岁</option>
+                                <option value="28">28岁</option>
+                                <option value="29">29岁</option>
+                                <option value="30">30岁</option>
+                                <option value="31">31岁</option>
+                                <option value="32">32岁</option>
+                                <option value="33">33岁</option>
+                                <option value="34">34岁</option>
+                                <option value="35">35岁</option>
+                                <option value="36">36岁</option>
+                                <option value="37">37岁</option>
+                                <option value="38">38岁</option>
+                                <option value="39">39岁</option>
+                                <option value="40">40岁</option>
+                                <option value="41">41岁</option>
+                                <option value="42">42岁</option>
+                                <option value="43">43岁</option>
+                                <option value="44">44岁</option>
+                                <option value="45">45岁</option>
+                                <option value="46">46岁</option>
+                                <option value="47">47岁</option>
+                                <option value="48">48岁</option>
+                                <option value="49">49岁</option>
+                                <option value="50">50岁</option>
+                                <option value="51">51岁</option>
+                                <option value="52">52岁</option>
+                                <option value="53">53岁</option>
+                                <option value="54">54岁</option>
+                                <option value="55">55岁</option>
+                                <option value="56">56岁</option>
+                                <option value="57">57岁</option>
+                                <option value="58">58岁</option>
+                                <option value="59">59岁</option>
+                                <option value="60">60岁</option>
+                            </select></em></p><span
+                        style="display: block;    width: 100%;    height: auto;    overflow: hidden;    padding-left: 1.57rem;    font-size: .23rem;    color: #777;    margin-top: .05rem;">*默认健康等级为A级</span><!-- <p><span>投被保险人为同一人</span><i class="tongyiren"></i></p> -->
+                </form>
+            </div>
+            <div class="con2_table_cent"
+                style="background: url(/longhapp/Public/Home/images/d4/b2-b-bj2.png) no-repeat top / 100% auto;">
+                <div class="con2_table">
+                    <div class="con2_t1">基本责任</div>
+                    <div class="con2_t1_text"><span>·<em></em>首次重大疾病保险金</span><span>·<em></em>身故保险金</span></div>
+                    <div class="con2_t1 con2_t2">可选责任</div>
+                    <div class="con2_t1 con2_tb">(单选或多选)</div>
+                    <div class="con2_t1_text"><span><input type="checkbox" id="fuxuan2"><em></em>轻症保险金及轻症豁免保险费
+                        </span><span><input type="checkbox" id="fuxuan3"><em></em>第二次重大疾病保险金
+                        </span></div>
+                    <div class="con2_jiagou">
+                        <div class="con2_jg_tit">是否加购“建信人寿附加康乐臻选(尊享版)两全保险”</div>
+                        <div class="con2_jg_a"><span class="active" data-in="1">是</span><span data-in="0">否</span></div>
+                    </div>
+                    <!-- 交费期间 --><!-- <div class="b-ton" style="margin-top:0;"><div>交费期间</div><div class="b-t-select"><select id="jiaoFeiSel"><option disabled selected hidden style="display:none;color:#ccc;" value="0">选择交费期间</option><option value="10">10年</option><option value="15">15年</option><option value="20">20年</option><option value="30">30年</option></select></div></div> --><!-- 投保人信息 -->
+                    <div class="tbr-xx con2_form">
+                        <p><span style="padding-top:2px;">交费期间</span><em class="b-t-select" style="width: 60%;"><select
+                                    id="jiaoFeiSel">
+                                    <option disabled selected hidden style="display:none;color:#ccc;" value="0">选择交费期间
+                                    </option>
+                                    <option value="10">10年</option>
+                                    <option value="15">15年</option>
+                                    <option value="20">20年</option>
+                                    <option value="30">30年</option>
+                                </select></em></p>
+                        <p style="margin-top:.5rem;"><span style="padding-top:2px;">保险期间</span><em class="b-t-select"
+                                style="width: 60%;"><select id="nianling2">
+                                    <option disabled selected hidden style="display:none;color:#ccc;" value="">请选择年龄
+                                    </option>
+                                    <option value="70">70</option>
+                                    <option value="75">75</option>
+                                    <option value="80">80</option>
+                                </select></em></p>
+                        <div style="clear: both;width: 100%; zoom: 1;"></div>
+                        <div
+                            style="font-size: .17rem;    color: #1057a0;    text-align: left;    padding-left: .39rem; height: .2rem; line-height: .2rem; width:100%; margin-top: 0.05rem">
+                            *指主险“建信人寿康乐臻选(尊享版)重大疾病保险”的保险期间</div>
+                        <p style="display:none;"><span style="padding-top:2px;">交费方式</span><em class="b-t-select"
+                                style="width: 60%;"><select id="yuejiaomeiqi">
+                                    <option value="1">年交</option>
+                                    <option value="0.52">半年交</option>
+                                    <option value="0.262">季交</option>
+                                    <option value="0.09">月交</option>
+                                </select><!-- <option disabled selected hidden style="display:none;color:#ccc;" value="0">选择交费方式</option> --></em>
+                        </p>
+                        <p style="display:none;"><span>健康等级</span><i class="aji">A级</i></p>
+                        <!-- <p><span>两全保险期间</span><input type="text" class="liangquan" value="" readonly/></p> -->
+                    </div>
+                    <style type="text/css">
+                        .fuxuanheji p {
+                            display: flex;
+                            /*			 			justify-content: center;*/
+                            align-items: center;
+                            padding-left: 5px;
+                            font-size: 0.26rem;
+                            margin-top: 5px;
+                        }
+
+                        .fuxuanheji p>input {
+                            margin-right: 5px;
+                        }
+                    </style>
+                    <div class="fuxuanheji" style="display:none;">
+                        <p><!-- <input type="checkbox" id="fuxuan1">  --><!-- <span>建信人寿附加康乐臻选两全保险</span> --></p>
+                        <p><!-- <input type="checkbox" id="fuxuan2">  --><!-- <span>轻症保险金及轻症豁免保险费</span> --></p>
+                        <p><!-- <input type="checkbox" id="fuxuan3"> --><!-- <span>二次重疾保险金及首次重疾后保险金豁免</span> --></p>
+                        <!-- <p><span>姓名</span><input type="text" class="xingming2" placeholder="请输入姓名" /></p> --><!-- <p><span style="padding-top:1px;">性别</span><i><em class="xingbie2"><a href="javascript:;" class="active" data-in="0">男</a><a href="javascript:;" data-in="1">女</a></em></i></p> -->
+                    </div><!-- 基本保险金额 -->
+                    <div class="b-ton" style="margin-top:.5rem;"><!-- <div><text class="yjmq-text">年交</text>保费</div> -->
+                        <div>基本保险金额</div>
+                        <div><input type="number" id="mainBaofei" /><i>元</i></div>
+                    </div>
+                    <!-- <div class="b-ton-beizhu" style="display:none;">（相当于月交保费：<span>0</span>元）</div><div class="b-shuoming2" style="color:#777;font-size: .2rem;padding: .2rem 0 0; text-align:center;">“总应交保费不低于<span>20</span>万元，保险费应为1000元的整数倍”</div> --><!-- 分割 --><!-- <div class="b-fenge1"></div> --><!-- 是否减额 -->
+                    <div class="b-jiane" style="display:none;"><span> 是否减额领取<br />现金价值
+                        </span>
+                        <div class="b-jiane-act"><span id="toubaoNo" data-in="0">是<i></i></span><span id="toubaoNofalse"
+                                class="active">否<i></i></span></div>
+                    </div><!-- 申请每年领取 -->
+                    <div class="d-shenqinglingqu con2_text_zhuijia con2_fixed1_box2_time">
+                        <div class="d-sq-1"><text style="text-align: center;">从</text><span class="b-t-select"><select
+                                    id="lStart" style="color:#333;">
+                                    <option>1周岁</option>
+                                </select></span><text style="text-align: center;">至</text><span class="b-t-select"
+                                style="margin-right:0;"><select id="lEnd" style="color:#333;">
+                                    <option>1周岁</option>
+                                </select></span></div>
+                        <div class="d-sq-2"> 申请每年减额领取
+                            <div><input type="number" class="con_jine" /><i>元</i></div>
+                        </div>
+                    </div>
+                    <!-- <div style="margin:0 auto;width:5.03rem;padding:10px 0;color:#777;font-size: 12px;">注：到达年龄等于被保险人投保时的年龄加上当时保单年度数，再减去1后所得到的年龄</div> --><!-- 添加一组 -->
+                    <div class="d-tj1 bj_new con2_text_zhuijia" id="con_tianjia"><img
+                            src="/longhapp/Public/Home/images/d4/jia.png"> 确认添加
+                    </div>
+                    <style>
+                        .con2_text_zhuijia {
+                            display: none;
+                        }
+
+                        .d-shenqinglingqu.act {
+                            display: block;
+                        }
+
+                        .d-tj1.act {
+                            display: flex;
+                        }
+
+                        .b-ton-beizhu {
+                            width: 5.26rem;
+                            margin: .1rem auto 0;
+                            font-size: .22rem;
+                            color: #777;
+                            text-align: right;
+                        }
+                    </style>
+                    <div class="con4_zhuiling">
+                        <div class="con4_zhuiling_bt">追加记录<span id="QKzj">清空</span></div>
+                        <div class="con4_zhuiling_zhuijia"></div>
+                        <div class="con4_zhuiling_bt">每年减额领取记录<span id="QKlq">清空</div>
+                        <div class="con4_zhuiling_lingqu active">
+                            <!-- <span><i>第<a class="c4zhuia">1</a>年 - 第<a class="c4zhuiz">1</a>年</i><em><b><a class="c4zhuiy">100</a>元</b><img src="/longhapp/Public/Home/images/d4/close-x.png" class="con4_close"></em></span> -->
+                        </div>
+                        <div class="con4_zhuiling_xian  active"></div>
+                    </div>
+                    <p style="display:none;"><span>基本责任</span><a id="add"
+                            class="bj_new">修改</a><!-- <a href="/longhapp/Public/Home/images/d4/康乐臻选条款.pdf" target="_blank" class="xiazaitiaokuan">下载产品条款</a> -->
+                    </p>
+                    <div id="wjTbWrap" style="display:none;"></div>
+                </div>
+                <div class="con2_text" style="display:none;">
+                    <p><span>建信金管家(臻享版)终身寿险(万能型)</span><!-- <a href="javascript:;" id="toubaoNo" data-in="0"><em>是否投保</em></a><br> -->
+                    <div><a href="/longhapp/Public/Home/images/d4/建信金管家（臻享版）终身寿险（万能型）保险条款.pdf" target="_blank"
+                            class="xiazaitiaokuan">下载产品条款</a><a
+                            href="/longhapp/Public/Home/images/d4/建信金管家（臻享版）终身寿险（万能型）产品说明书.pdf" target="_blank"
+                            class="xiazaitiaokuan">下载产品说明书</a></div><span class="toubaoIn" style="color:#b67719;">趸交保费 :
+                        <em>100</em>元</span></p>
+                    <div style="clear:both"></div>
+                    <p style="display:none;"><span class="toubaoIn">康乐臻选(尊享版)的满期保险金转入建信金管家(臻享版)终身寿险(万能型)万能账户</span><a
+                            href="javascript:;" id="zhuanruNo" data-in="0" class="toubaoIn"><em>是否转入</em></a></p>
+                    <div style="clear:both" style="display:none;"></div><a href="javascript:;"
+                        class="con2_text_zhuijia"><em>追加领取</em></a>
+                    <div class="con2_text_beizhu">
+                        <p>注 :</p>
+                        <p>1.投保《建信金管家(臻享版)终身寿险(万能型)》(以下简称“金管家(臻享版)”)，其投保人必须与《康乐臻选(尊享版)》(以下简称“尊享如意”)
+                            生存类保险金受益人为同一人，康乐臻选(尊享版)的年金、特别年金、祝寿金将默认转入建信金管家(臻享版)终身寿险(万能型)。</p>
+                        <p>2.建议书假设“金管家(臻享版)”和“尊享如意”的被保险人为同一人，投保年龄及周岁均根据“尊享如意”的被保险人信息计算。</p>
+                        <p>3.“尊享如意”产品可单独购买。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="con2_book" style="display:none;">
+                <p><span>首年总保费</span><i class="con2_bookI">0.00</i></p>
+                <!-- <a href="#" id="createResBtn" class="bj_new">生成建议书</a> -->
+            </div><img src="/longhapp/Public/Home/images/d4/b2-a.png" class="d-ck-a"
+                id="createResBtn"><!-- <img src="/longhapp/Public/Home/images/d4/c2-bot.png" class="c2-bot"> -->
+        </div>
+    </div>
+    <div class="background"></div>
+    <div class="con2_fixed1" style="display: block; opacity: 0;">
+        <h2 class="bt_new" style="height: .78rem;top:0;width:100%;"><span
+                style="display:block;width:100%;height:100%;font-size:18px;color:#fff;">追加领取</span></h2><a
+            href="javascript:;"></a>
+        <div class="con2_fixed1_box1">
+            <div class="jiazhiselc2"><select id="jiazhisel">
+                    <option value="0">保单年度1年，被保险人31岁</option>
+                    <option value="1">保单年度2年，被保险人31岁</option>
+                    <option value="2">保单年度3年，被保险人31岁</option>
+                    <option value="3">保单年度4年，被保险人31岁</option>
+                    <option value="4">保单年度5年，被保险人31岁</option>
+                    <option value="5">保单年度6年，被保险人31岁</option>
+                </select></div>
+            <ul>
+                <li><span>追加保费(累计) :</span><i><em id="kuKz">0</em>元</i></li>
+                <li><span>部分领取(累计) :</span><i><em id="kuSz">0</em>元</i></li>
+                <li><span>帐户价值(保证利益2%) :</span><i><em id="kuU">0</em>元</i></li>
+                <li><span>帐户价值(结息利益4%) :</span><i><em id="kuV">0</em>元</i></li>
+                <!-- <li><span>帐户价值(高档6%) :</span><i><em id="kuW">0</em>元</i></li> -->
+            </ul>
+            <!-- <div class="time_s"><span id="time_s_left"></span><i><em><b id="time_s_con"><a></a></b></em></i><span id="time_s_right"></span></div> -->
+            <div class="time_s"><span id="time_s_left"></span>
+                <div id="wrapper">
+                    <div id="scroller">
+                        <div class="ibon" id="ibon"><a></a></div>
+                    </div>
+                    <div id="scroller_left"></div>
+                    <div id="scroller_right"></div>
+                    <div class="scroller_bg"></div>
+                    <div id="scroller_change" style="display:none;">0</div>
+                </div><span id="time_s_right"></span>
+            </div>
+            <div
+                style="width:100%;height: auto;padding-bottom: .1rem; font-size: .18rem;text-align: center;color: #b28e5a;clear: both;">
+                拖动按钮查看不同年龄段的保单利益</div>
+        </div>
+        <div class="con2_fixed1_box2">
+            <div class="con2_fixed1_box2_title"><span
+                    class="active"><i>追加保费</i><em>(年初)</em></span><span><i>部分领取</i><em>(年末)</em></span></div>
+            <!-- <div class="fenge4"></div> -->
+            <div class="con2_fixed1_sel">
+                <div class="con2_fixed1_box2_time">
+                    <p><span>开始时间</span><!-- <div class="zStartc2"> --><select id="zStart">
+                            <option value='1'>第1年,29岁</option>
+                            <option value='2'>第2年,32岁</option>
+                            <option value='3'>第3年,32岁</option>
+                            <option value='4'>第4年,32岁</option>
+                            <option value='5'>第5年,32岁</option>
+                            <option value='7'>第7年,33岁</option>
+                            <option value='8'>第8年,33岁</option>
+                            <option value='10'>第10年,33岁</option>
+                            <option value='11'>第11年,33岁</option>
+                        </select><!-- </div> --></p>
+                    <p><span>结束时间</span><!-- <div class="zEndc2"> --><select id="zEnd">
+                            <option value='1'>第1年,29岁</option>
+                            <option value='2'>第2年,32岁</option>
+                            <option value='3'>第3年,32岁</option>
+                            <option value='4'>第4年,32岁</option>
+                            <option value='5'>第5年,32岁</option>
+                            <option value='7'>第7年,33岁</option>
+                            <option value='8'>第8年,33岁</option>
+                            <option value='10'>第10年,33岁</option>
+                            <option value='11'>第11年,33岁</option>
+                        </select><!-- </div> --></p>
+                    <p><span>每年追加金额</span><input type="number" class="con_jine" /></p>
+                </div>
+                <div class="con2_fixed1_box2_time">
+                    <p><span>开始时间</span><!-- <div class="lStartc2"> --><select>
+                            <option value='1'>第1年,31岁</option>
+                            <option value='2'>第2年,32岁</option>
+                            <option value='3'>第3年,33岁</option>
+                            <option value='4'>第4年,33岁</option>
+                            <option value='5'>第5年,33岁</option>
+                            <option value='7'>第7年,33岁</option>
+                            <option value='8'>第8年,33岁</option>
+                            <option value='10'>第10年,33岁</option>
+                            <option value='11'>第11年,33岁</option>
+                        </select><!-- </div> --></p>
+                    <p><span>结束时间</span><!-- <div class="lEndc2"> --><select>
+                            <option value='1'>第1年,31岁</option>
+                            <option value='2'>第2年,32岁</option>
+                            <option value='3'>第3年,33岁</option>
+                            <option value='4'>第4年,33岁</option>
+                            <option value='5'>第5年,33岁</option>
+                            <option value='7'>第7年,33岁</option>
+                            <option value='8'>第8年,33岁</option>
+                            <option value='10'>第10年,33岁</option>
+                            <option value='11'>第11年,33岁</option>
+                        </select><!-- </div> --></p>
+                    <p><span>每年部分领取金额</span><input type="number" class="con_jine" /></p>
+                </div>
+            </div>
+            <!-- <div class="con4_zhuiling"> --><!-- <div class="con4_zhuiling_bt">追加记录<span id="QKzj">清空</span></div> --><!-- <div class="con4_zhuiling_zhuijia"></div> --><!-- <div class="con4_zhuiling_bt">领取记录<span id="QKlq">清空</div> --><!-- <div class="con4_zhuiling_lingqu active"> --><!-- <span><i>第<a class="c4zhuia">1</a>年 - 第<a class="c4zhuiz">1</a>年</i><em><b><a class="c4zhuiy">100</a>元</b><img src="/longhapp/Public/Home/images/d4/close-x.png" class="con4_close"></em></span> --><!-- </div> --><!-- <div class="con4_zhuiling_xian  active"></div> --><!-- </div> -->
+            <div class="con2_fixed1_box3">
+                <p><!-- <a id="con_tianjia">添加记录</a><a id="con_baocun">保存记录</a> --></p>
+            </div>
+        </div>
+    </div>
+    <div class="con2_fixed2">
+        <h2 style="top:0;width:100%;border-radius: 0;"><span>康乐臻选(尊享版)</span></h2><a href="javascript:;"></a>
+        <p><span>基本责任</span><i></i></p>
+        <form>
+            <ul>
+                <li><span>交费期间</span>
+                    <div class="jiaofeic2">
+                        <!-- <select name="jiaofei" id="jiaoFeiSel"><option value="1">1年</option><option value="3">3年</option><option value="5" selected="selected">5年</option><option value="10">10年</option><option value="15">15年</option><option value="20">20年</option></select> -->
+                    </div>
+                </li>
+                <!--li><span>保险期间</span><div class="jiaofeic2"><select name="" id="enqijian"><option value="10">10年</option><option value="15">15年</option><option value="20">20年</option></select></div></li-->
+                <li><span>保险期间</span><input type="text" value="终身" disabled="disabled" /></li>
+                <li><span>期交保险费</span><!-- <input type="number" id="mainBaofei"/> --><a href="javascript:;"></a></li>
+                <li><span>月交每期保险费</span><!-- <input type="text" value="0" disabled="disabled" id="yuejiaomeiqi"/> -->
+                </li>
+                <li><span>基本保险金额</span><input type="text" value="0.00" disabled="disabled" id="qjibenbaoxian" /></li>
+            </ul>
+            <div style="display:none;" id="jiaofeiqi">
+                <option value="0">3年</option>
+                <option value="1">5年</option>
+            </div>
+            <div style="display:none" id="qijioption">
+                <option value="1">10年</option>
+                <option value="2">15年</option>
+            </div>
+            <div class="con2_fixed2_button"><input type="hidden" id="userid" value="" /><a href="#"
+                    id="mainConfirm">确定</a></div>
+        </form>
+    </div>
+    <div class="loading"><em><i><img src="/longhapp/Public/Home/images/d4/loading.gif" alt=""></i></em></div>
+    <script src="/longhapp/Public/Home/js/d4/lCalendar.min.js"></script>
+    <!-- <script src="/longhapp/Public/Home/js/lCalendar.min.js"></script> --><!-- <script src="/longhapp/Public/Home/js/jquery-1.11.0.min.js"></script> -->
+    <script src="/longhapp/Public/Home/js/common.js"></script><!-- iscroll.js -->
+    <script>			 var $scrollerA = 0;
+    </script>
+    <script src="/longhapp/Public/Home/js/d4/iscroll.js"></script>
+    <script>				var $wrapperWidth = $('#wrapper').width();
+        var $scroller = $('#scroller');
+        var $ibonAWidth = $('.ibon a').width();
+        var con2Fixed1Width = $('.con2_fixed1').width();
+
+        $scroller.find('div').css('width', $wrapperWidth + 'px');
+        $scroller.css('width', ($wrapperWidth * 2) - $ibonAWidth + 'px');
+
+        var $scroller_1 = '-' + $wrapperWidth - $ibonAWidth;
+        // console.log($wrapperWidth-$ibonAWidth);
+        // 
+        // 
+        // iscroll.js
+        var myscroll; //myscroll是全局变量，可以在任意地方调用
+        function loaded(c) {
+            var vc = c;
+            myscroll = new iScroll("wrapper", {
+                vScroll: false,
+                hScrollbar: false,
+                vScrollbar: false,
+                bounce: false,
+                momentum: false,
+                x: vc,
+            });
+
+        }
+        window.addEventListener("DOMContentLoaded", loaded($scroller_1), false);
+        setTimeout(function () {
+            // $('.con2_fixed1').css('opacity','1');
+            $('.con2_fixed1').removeAttr('style');
+        }, 50);
+
+        var $scrollerB = 0;
+        var $scrollerB_On = false;
+        function iscrollTo(c) {
+            // if($scrollerB_On == 0){
+            var $scroller_2 = Number('-' + ($wrapperWidth - $ibonAWidth - Number((c * $scrollerB).toFixed(0))));
+            myscroll.scrollTo($scroller_2, 0, 0);
+            // }
+        }
+    </script>
+    <script>
+        $('.b-t-select select').on('click', function () {
+            $(this).css('color', '#000');
+        });
+
+        var $ku = {}; var $kuTrue = false;
+
+        (function (window) {
+
+            //检查主险保费
+            function checkMainBao() {
+                var njBaofei = $('#mainBaofei').val();
+                njBaofei = parseInt(njBaofei);
+                var baoxianqijian = $('#jiaoFeiSel').val();
+                var nianling = $('#sui1').val();
+
+                if (!isbei1000(njBaofei)) {
+                    $.wjNotify('期交保费应为1000的整数倍');
+                    return false;
+                }
+
+                if ($('.con2_jg_a .active').attr('data-in') == 1) {
+                    if (nianling < 18 && njBaofei < 200000) {
+                        $.wjNotify('当前年龄基本保险金额不得低于20万');
+                        return false;
+                    }
+
+                    if (nianling >= 18 && nianling <= 39 && njBaofei < 100000) {
+                        $.wjNotify('当前年龄基本保险金额不得低于10万');
+                        return false;
+                    }
+
+                    if (nianling > 39 && njBaofei < 50000) {
+                        $.wjNotify('当前年龄基本保险金额不得低于5万');
+                        return false;
+                    }
+                } else {
+                    if (nianling < 18 && njBaofei < 300000) {
+                        $.wjNotify('当前年龄基本保险金额不得低于30万');
+                        return false;
+                    }
+
+                    if (nianling >= 18 && nianling <= 39 && njBaofei < 200000) {
+                        $.wjNotify('当前年龄基本保险金额不得低于20万');
+                        return false;
+                    }
+
+                    if (nianling > 39 && njBaofei < 100000) {
+                        $.wjNotify('当前年龄基本保险金额不得低于10万');
+                        return false;
+                    }
+                }
+
+
+
+
+                return true;
+            }
+            //是否为1000的整数倍
+            function isbei1000(num) {
+                return (num / 1000) % 1 === 0;
+            }
+
+
+            //主险确认时 险种提交
+            $('#mainConfirm').on('click', function () {
+                if (!checkMainBao()) {
+                    return false;
+                }
+
+                //ajax计算主险费
+                var sex = $(".xingbie a.active").attr('data-in');
+                var age = $('#sui1').val();
+                var jiaofeiqi = $('#jiaoFeiSel').val();
+                var njBaofei = $('#mainBaofei').val();
+                var qjibenbaoxian = $('#qjibenbaoxian').val();
+                //将交费期间存储到dom属性上
+                // $('#jiaoFeiSel').data('jiaofei',jiaofeiqi);
+
+                //njBaofei  保费
+                $.ajax({
+                    type: 'post',
+                    url: "/longhapp/indexd4c/calcumain.html",
+                    data: 'age=' + age + '&sex=' + sex + '&jiaofeiqi=' + jiaofeiqi + '&banffee=' + njBaofei + '&qjibenbaoxian=' + qjibenbaoxian,
+                    dataType: 'json',
+                    success: function (data) { // console.log(data,age,sex,jiaofeiqi,njBaofei,qjibenbaoxian)
+
+                        if (data.status == 1) {
+                            $('#wjTbWrap').html(data.html);
+                            $(".background").css("display", "none");
+                            $(".con2_fixed2").css("display", "none");
+                            //隐藏添加 改为修改
+                            $('#add').addClass('active');
+                            // $('#mainedit').show();
+                            //设置首年保费
+                            $('#mainFee').show().find('.firstFee').text(data.total);
+
+                            // $('#mainBaoJ div em').html(data.bmon.toFixed(2));
+
+                        }
+                    },
+                    error: function (data) {
+                        console.log(data, 0);
+                    }
+                });
+                Qzongku(1);
+            });
+
+            var zKu = {
+                'zZtext': [0], // 领取库
+                'zLtext': [0],  // 追加库
+            };
+
+            $('.con2_jg_a span').click(function () {
+
+                $('.con2_jg_a span').removeClass('active');
+                $(this).addClass('active');
+
+                var trfa = $('.con2_jg_a span.active').attr('data-in');
+                if (trfa == 1) {
+                    $('.liangquan').val($('#nianling2').val() - 10);
+                } else {
+                    $('.liangquan').val('无');
+                }
+            });
+
+            $('#nianling2').change(function () {
+                if ($('.con2_jg_a span.active').attr('data-in') == 1) {
+                    $('.liangquan').val($('#nianling2').val() - 10);
+                } else {
+                    $('.liangquan').val('无');
+                }
+            });
+
+            //生成计划书演示 ajax提交
+            $('#createResBtn').on('click', function () {
+                // 需求
+
+                var Qxb = $('.xingbie a.active').attr('data-in'); // 性别
+                var Qnl = $('#sui1').val(); // 年龄
+                var Qnl2 = $('#nianling2').val();
+                var QjF = $('#jiaoFeiSel').val(); // 交费期间
+                var Qbf = $('#mainBaofei').val(); // 期交保险费
+                var Qjb = $('#qjibenbaoxian').val(); // 初始基本保险金额
+                var Qbq = $('#yuejiaomeiqi').val(); // 保期
+
+                var toubaoNo = $('.con2_jg_a span.active').attr('data-in'); //是否投保
+                var zhuanruNo = $('#fuxuan2').is(':checked') ? 1 : 0; //是否转入
+                var JzSelYear = $('#fuxuan3').is(':checked') ? 1 : 0; // 保单年度 + 被保人年龄
+
+                var toubaoNo2 = $('#toubaoNo2').attr('data-in'); //是否投保
+                // console.log(toubaoNo)
+
+                // 姓名
+                var name = $('.xingming').val();
+                if (name == '') {
+                    $.wjNotify('请写姓名！');
+                    return false;
+                }
+
+
+                var userid = $('#userid').val();
+                // var bull=($('#check1').is(':checked')) ? 1 : 0;
+
+                if ($('.xingming').val() == '' || $('#sui1').val() == '' || $('#jiaoFeiSel').val() == 0 || $('#jiaoFeiSel').val() == null || $('#mainBaofei').val() == '' || $('#yuejiaomeiqi').val() == 0) {
+
+                    $.wjNotify('请填写基本信息');
+                    return false;
+
+                }
+
+                if (!checkMainBao()) {
+                    return false;
+                }
+
+                var n1 = ['10!70', '10!75', '10!80', '15!70', '15!75', '15!80', '20!70', '20!75', '20!80', '30!70', '30!75', '30!80'];
+                var n2 = [41, 44, 47, 39, 42, 45, 37, 39, 42, 30, 35, 37];
+                var n3 = [50, 55, 60, 45, 50, 55, 40, 45, 50, 30, 35, 40];
+
+                var nn = QjF + '!' + Qnl2;
+
+                for (var i = 0; i < n1.length; i++) {
+                    if (nn == n1[i]) {
+                        if (toubaoNo == 1) {
+                            if (Qnl > n2[i]) {
+                                $.wjNotify('当前选择最高投保年龄为' + n2[i] + '岁');
+                                return false;
+                            }
+                        } else {
+                            if (Qnl > n3[i]) {
+                                $.wjNotify('当前选择最高投保年龄为' + n3[i] + '岁');
+                                return false;
+                            }
+                        }
+                    }
+                }
+
+                console.log('姓名', name);
+                console.log('年龄', Qnl);
+                console.log('性别', Qxb);
+                console.log('交费期间', QjF);
+                console.log('重疾保险期间', Qnl2);
+                console.log('两全保险期间', Qnl2 - 10);
+                console.log('交费方式', Qbq);
+                console.log('建信人寿附加康乐臻选两全保', toubaoNo);
+                console.log('轻症保险金及轻症豁免保险费', zhuanruNo);
+                console.log('二次重疾保险金及首次重疾后保险金豁免', JzSelYear);
+                console.log('基本保险金额', Qbf);
+
+
+
+                // return false;
+                // Qzongku(1);
+
+
+                // 跳转传参
+                $.ajax({
+                    type: 'post',
+                    url: "/longhapp/indexd4c/calculateall.html",
+                    data: {
+                        'Qxb': Qxb,
+                        'Qnl': Qnl,
+                        'QjF': QjF,
+                        'Qbf': Qbf,
+                        'Qjb': Qjb,
+                        'toubaoNo': toubaoNo,
+                        'zhuanruNo': zhuanruNo,
+                        'JzSelYear': JzSelYear,
+                        'zKu': zKu,
+                        'name': name,
+                        'userid': '',
+                        'Qbq': Qbq,
+                        'Qxb2': '',
+                        'Qnl2': Qnl2
+                    },
+                    dataType: 'json',
+                    beforeSend: function (xmlHttp) {
+                        xmlHttp.setRequestHeader("If-Modified-Since", "0");
+                        xmlHttp.setRequestHeader("Cache-Control", "no-cache");  
+                    },
+                    success: function (data) {
+                        if (data.status == 1) {
+                            // $('.xingming').val(null);
+                            // $('.xingbie a').removeClass('active').eq(0).addClass('active'); // 性别
+                            // // $('#sui1').val(null); // 年龄
+                            // $('#demo1').val(null);
+                            // $('#mainBaofei').val(null); // 期交保险费
+                            // $('#qjibenbaoxian').val(null); // 初始基本保险金额
+                            // $('.table_xian').remove();
+                            // $('#toubaoNofalse').trigger('click'); //是否投保
+                            // $('#toubaoIn.active').trigger('click'); //是否转入
+                            window.location = data.url;
+                        } else {
+                            $.wjNotify(data.info);
+                        }
+
+                    },
+                    error: function (data) {
+                        console.log(data, 0);
+                    }
+                });
+
+                // console.log('age='+age+'&sex='+sex+'&jiaofeiqi='+jiaofeiqi+'&mainxianfee='+mainxianFee+'&shouxianbaoe='+shouxianBaoe+'&zhongjibaoe='+zhongjiBaoe+'&userid='+userid+'&bull='+bull+'&name='+name);
+
+
+            });
+
+            // 是否投保
+            $('#toubaoNo').on('click', function () {
+                $this = $(this);
+
+                if ($('#qjibenbaoxian').val() == '' || $('.xingming').val() == '' || $('#sui1').val() == '' || $('#jiaoFeiSel').val() == 0 || $('#jiaoFeiSel').val() == null || $('#mainBaofei').val() == '' || $('#yuejiaomeiqi').val() == 0) {
+
+                    $.wjNotify('请填写基本信息');
+                    return false;
+
+                }
+                console.log($('#qjibenbaoxian').val())
+                if (!checkMainBao()) {
+                    return false;
+                }
+
+                $('#toubaoNofalse').removeClass('active');
+                $this.addClass('active');
+                // $('.kexuanfujiaxinxi').addClass('act');
+                $('.toubaoIn').addClass('act');
+                $this.attr('data-in', 1);
+                $('.con2_text_zhuijia').addClass('act');
+                Qzongku(1);
+
+
+
+
+            });
+            $('#toubaoNofalse').on('click', function () {
+                $this = $(this);
+                $that = $('#toubaoNo');
+                $that.removeClass('active');
+                $this.addClass('active');
+                // $('.kexuanfujiaxinxi').removeClass('act');
+                $('.toubaoIn').removeClass('act');
+                $that.attr('data-in', 0);
+                $('#zhuanruNo').removeClass('active');
+                $('#zhuanruNo').attr('data-in', 0);
+                $('.con2_text_zhuijia').removeClass('act');
+                if ($('.con4_zhuiling_lingqu').hasClass('active') || $('.con4_zhuiling_zhuijia').hasClass('active')) {
+                    if ($('.con4_zhuiling_lingqu').hasClass('active')) {
+                        $('#QKlq').trigger('click');
+                    }
+                    if ($('.con4_zhuiling_zhuijia').hasClass('active')) {
+                        // $('#QKzj').trigger('click');
+                    }
+                } else {
+                    // Qzongku(1);
+                }
+
+
+
+            });
+
+
+            $('#toubaoNo2').on('click', function () {
+                $this = $(this);
+                if ($this.hasClass('active')) {
+                    $this.removeClass('active');
+                    $this.attr('data-in', 0);
+                    $('.kexuanfujiaxinxi').removeClass('act');
+                } else {
+                    $this.addClass('active');
+                    $this.attr('data-in', 1);
+                    $('.kexuanfujiaxinxi').addClass('act');
+                }
+                Qzongku(1);
+            });
+
+            // 追加领取
+            $(".con2_text_zhuijia").click(function () {
+
+                if ($('#add').hasClass('active')) {
+                    $(".background").css("display", "block");
+                    $(".con2_fixed1").css("display", "block");
+                }
+                // else{
+                // 	$.wjNotify('请选择险种');
+                // 	return false;
+                // }
+
+            });
+
+            // 全局固定变量
+            var zloption = [{
+                'star': [0],
+                'end': [0],
+            }, {
+                'star': [0],
+                'end': [0],
+            }];
+            var $bdbb = $('#jiazhisel');
+            var con4Zhuiling = $('.con4_zhuiling');
+            var con4ZhuilingBt = $('.con4_zhuiling_bt');
+            var conTianjia = $('#con_tianjia');
+            var conBaocun = $('#con_baocun');
+            var con4ZhuilingZhuijia = $('.con4_zhuiling_zhuijia');
+            var con4ZhuilingLingqu = $('.con4_zhuiling_lingqu');
+            var QKzj = $('#QKzj');
+            var QKlq = $('#QKlq');
+            var $zStart = $('#zStart');
+            var $zEnd = $('#zEnd');
+            var $lStart = $('#lStart');
+            var $lEnd = $('#lEnd');
+
+            // 保存记录 - 追加领取
+            conBaocun.on('click', function () {
+                $(".background").css("display", "none");
+                $(".con2_fixed1").css("display", "none");
+            });
+
+            //是否转入
+            $('#zhuanruNo').click(function () {
+                if ($(this).hasClass('active')) {
+                    $(this).removeClass('active');
+                    $(this).attr('data-in', 0);
+                } else {
+                    $(this).addClass('active');
+                    $(this).attr('data-in', 1);
+                }
+                Qzongku(2);
+            });
+
+            var dataM = [];
+            var dataU = [];
+            // 添加记录
+            conTianjia.on('click', function () {
+                var $index = $('.con2_fixed1_box2_time.act').index();
+                var $ind = parseInt($('.con2_fixed1_box2_time.act').find('.con_jine').val());
+                var $jiaofeis = $('#jiaoFeiSel').val() < 10 ? 5000 : 3000;
+                console.log($ind, $jiaofeis);
+
+                var $jq35 = ($jiaofeis);
+                if (isNaN($ind) || $ind == 0) {
+                    $.wjNotify('请输入正确数值');
+                    return false;
+                }
+
+
+
+                var Cfb2tA = $('.con2_fixed1_box2_time.act');
+                var S1 = Cfb2tA.find('select').eq(0).val();
+                var S2 = Cfb2tA.find('select').eq(1).val();
+                var S_1 = S1 - 1;
+                var QjF1 = $('#jiaoFeiSel').val();
+
+                // if($index==0){ // 追加记录
+                // 	var S12K = (S2-S1+1)*$ind+zKu.zZtextz;
+                // 	if(!isbei100($ind)){
+                // 		$.wjNotify('每次追加的保费，为100元的整数倍');
+                // 		return false;
+                // 	}
+                // 	if($jq35<S12K || $ind<5000){
+                // 		$.wjNotify('每次追加的保费不低于5000元，且累计追加金额不超过尊享如意的应支付保险费之和');
+                // 		return false;
+                // 	}
+
+                // 	if($ind>600000 || $ind>$ku.G[QjF1]*0.2){
+                // 		if(600000>$ku.G[QjF1]*0.2){
+                // 			$.wjNotify('每次追加的保费上限为关联险种的总应交保费的20%');
+                // 		}else{
+                // 			$.wjNotify('每次追加的保费上限为60万元');
+                // 		}
+                // 		return false;
+                // 	}
+                // }else{ // 领取记录
+                // if(!isbei100($ind) || $ind<500){
+                // 	$.wjNotify('每次领取金额不得低于500元且需为100元的整数倍');
+                // 	return false;
+                // }
+
+                // }
+
+                // if(Cfb2tA.index()==0){
+                // 	con4ZhuilingZhuijia.append('<span><i>第<a class="c4zhuia">'+S1+'</a>年 - 第<a class="c4zhuiz">'+S2+'</a>年</i><em><b><a class="c4zhuit">'+$ind+'</a>元</b><img src="/longhapp/Public/Home/images/1/close-x.png" class="con4_close"></em></span>');
+                // }else{
+                con4ZhuilingLingqu.append('<span class="active"><i><a class="c4linga" data-id="' + S1 + '">' + Cfb2tA.find('select').eq(0).find('option:selected').text() + '</a> - <a class="c4lingz" data-id="' + S2 + '">' + Cfb2tA.find('select').eq(1).find('option:selected').text() + '</a></i><em><b><a class="c4lingt">' + $ind + '</a>元</b><img src="/longhapp/Public/Home/images/1/close-x.png" class="con4_close"></em></span>');
+                // }
+
+                Qzongku(2);
+
+                ZLchange();
+
+            });
+            //是否为100的整数倍
+            function isbei100(num) {
+                return (num / 100) % 1 === 0;
+            }
+
+            // 删除记录
+            con4ZhuilingZhuijia.on('click', '.con4_close', function () {
+                var $this = $(this).parent().parent();
+                $this.remove();
+                // Qzongku(2);
+                $('#QKlq').trigger('click');
+                ZLchange();
+            });
+            con4ZhuilingLingqu.on('click', '.con4_close', function () {
+                var $this = $(this).parent().parent();
+                $this.remove();
+                Qzongku(2);
+                ZLchange();
+            });
+            // QKzj.on('click',function(){
+            // 	con4ZhuilingZhuijia.find('span').remove();
+            // 	// Qzongku(2);
+            // 	$('#QKlq').trigger('click');
+            // 	ZLchange();
+            // });
+            QKlq.on('click', function () {
+                con4ZhuilingLingqu.find('span').remove();
+                Qzongku(2);
+                ZLchange();
+            });
+
+            // 滚动条动作
+            var timeSLeft = $('#time_s_left');
+            var timeSRight = $('#time_s_right');
+            var timeSCon = $('#time_s_con');
+            timeSRight.on('click', function () {
+                var $indx = $('#jiazhisel').find('option').length;
+                var $ind = $('#jiazhisel').val();
+                $ind++;
+                $ind = $ind >= $indx ? $indx - 1 : $ind;
+                iscrollTo($ind);
+                // $('#jiazhisel').val($ind).trigger("change");
+                // Qzongku(2);
+            });
+            timeSLeft.on('click', function () {
+                var $ind = $('#jiazhisel').val();
+                $ind--;
+                $ind = $ind <= 0 ? 0 : $ind;
+                iscrollTo($ind);
+                // $('#jiazhisel').val($ind).trigger("change");
+                // Qzongku(2);
+            });
+
+            $("#jiazhisel").change(function () {
+                timeSCon.css('width', ($(this).val() / ($(this).find('option').length - 1) * 100) + '%');
+                // Qzongku(2);
+                // 
+                if ($scrollerB_On) {
+                    iscrollTo($(this).val());
+                    $scrollerB_On = false;
+                }
+
+                var selVal = Number($('#jiazhisel option:last').val());
+                if ($kuTrue && Number($(this).val()) > selVal) {
+                    return false;
+                }
+
+                Kzongku($('#jiazhisel').val());
+            });
+            $('#jiazhisel').click(function () {
+                $scrollerB_On = true;
+            });
+
+            function Kzongku(a) {
+                // console.log($ku);
+                if ($kuTrue) {
+                    $('#kuKz').html($ku.Kz[a].toFixed(2));
+                    $('#kuSz').html($ku.Sz[a].toFixed(2));
+                    $('#kuU').html($ku.U[a] > 0 ? $ku.U[a].toFixed(2) : '-');
+                    $('#kuV').html($ku.V[a] > 0 ? $ku.V[a].toFixed(2) : '-');
+                    $('#kuW').html($ku.W[a] > 0 ? $ku.W[a].toFixed(2) : '-');
+                }
+            }
+
+            // 追加保费 开始 结束
+
+            zlSC($('#zStart'), $('#zEnd'), 0); // 追加 select 
+            zlSC($('#lStart'), $('#lEnd'), 1); // 领取 select 
+
+            // 追领 select change
+            function zlSC(a, b, d) {
+                var zA = a;
+                var zB = b;
+                var zD = d;
+                zA.change(function () {
+                    zlSCone($(this), zB, zD); // 追加 select 
+                });
+            }
+
+            function zlSCone(a, b, d) {
+                var zA = a;
+                var zB = b;
+                var zD = d;
+                var $thind = Number(zA.val());
+                var $zEndVal = Number(zB.val());
+                zB.find('option').prop('disabled', true);
+                zB.find('option').hide();
+                zB.find('option').each(function (i) {
+                    var $thValx = Number($(this).next().val()) - 1;
+                    var $thVal1 = Number($(this).val());
+                    if ($thVal1 >= $thind) {
+                        $(this).prop('disabled', false);
+                        $(this).show();
+                        if ($thValx > $thVal1) {
+                            zB.val($thVal1).trigger("change");
+                            return false;
+                        }
+                    }
+                });
+                if ($zEndVal < $thind) {
+                    zB.val($thind).trigger("change");
+                }
+            }
+
+            // zongku------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            function Qzongku(a) {
+
+                if ($('.xingming').val() == '' || $('#sui1').val() == '' || $('#jiaoFeiSel').val() == 0 || $('#jiaoFeiSel').val() == null || $('#mainBaofei').val() == '' || $('#yuejiaomeiqi').val() == 0) {
+
+                    return false;
+
+                }
+
+                // 参数
+                var offA = a; // 账户价值调取调整
+                var zZhuijia = $('.con4_zhuiling_zhuijia span'); //追加
+                var zLingqu = $('.con4_zhuiling_lingqu span'); //领取
+
+                // 追加库填充
+                zKu.zZtext = [null];
+                zKu.zZtextz = 0;
+                $.each(zZhuijia, function () {
+                    var qa = $(this).find('.c4zhuia').html();
+                    var qz = $(this).find('.c4zhuiz').html();
+                    var qt = $(this).find('.c4zhuit').html();
+                    for (var i = qa - 1; i < qz; i++) {
+                        zKu.zZtext[i] = qt;
+                        zKu.zZtextz += Number(zKu.zZtext[i]);
+                    }
+                });
+
+                // if(zKu.zZtextz > $jq35){
+                //   $.wjNotify('每次追加的保费不低于5000元，且累计追加金额不超过尊享如意的应支付保险费之和');
+                //   return false;
+                // }
+
+                // 领取库填充
+                zKu.zLtext = [null];
+                $.each(zLingqu, function () {
+                    var qa = $(this).find('.c4linga').attr("data-id");
+                    var qz = $(this).find('.c4lingz').attr("data-id");
+                    var qt = $(this).find('.c4lingt').html();
+                    for (var i = qa - 1; i < qz; i++) {
+                        zKu.zLtext[i] = qt;
+                    }
+                });
+
+                // 需求
+                var Qxb = $('.xingbie a.active').attr('data-in'); // 性别
+                var Qnl = $('#sui1').val(); // 年龄
+                var QjF = $('#jiaoFeiSel').val(); // 交费期间
+                var Qbf = $('#mainBaofei').val(); // 期交保险费
+                var Qjb = $('#qjibenbaoxian').val(); // 初始基本保险金额
+                var toubaoNo = $('#toubaoNo').attr('data-in'); //是否投保
+                var zhuanruNo = $('#zhuanruNo').attr('data-in'); //是否转入
+                var JzSelYear = $('#jiazhisel').val(); // 保单年度 + 被保人年龄
+                var Qbq = $('#enqijian').val(); //保期
+                var toubaoNo2 = $('#toubaoNo2').attr('data-in'); //是否投保
+                var yuejiaomeiqi = $('#yuejiaomeiqi').val(); // 交费方式
+                // console.log(zKu);
+                $.ajax({
+                    type: 'post',
+                    url: "/longhapp/indexd4c/qzongku.html",
+                    data: {
+                        'Qxb': Qxb,
+                        'Qnl': Qnl,
+                        'QjF': QjF,
+                        'Qbf': Qbf,
+                        'Qjb': Qjb,
+                        'toubaoNo': toubaoNo,
+                        'zhuanruNo': zhuanruNo,
+                        'toubaoNo2': toubaoNo2,
+                        'JzSelYear': JzSelYear,
+                        'zKu': zKu,
+                        'Qbq': Qbq,
+                        'Qxb2': $('.xingbie2 a.active').attr('data-in'),
+                        'Qnl2': $('#nianling2').val(),
+                        'yuejiaomeiqi': yuejiaomeiqi,
+                    },
+                    dataType: 'json',
+                    beforeSend: function () {
+                        $('.loading').css('display', 'table');
+                    },
+                    success: function (data) {
+                        console.log(data)
+                        $ku = data; $kuTrue = true;
+
+
+
+                        // // 首年总保费
+                        // $('.con2_bookI').html(data.Sbf);
+                        dataM = data.F;
+                        dataU = data.T;
+                        // 保单年度+被保人年龄
+                        if (offA == 1) {
+                            $bdbb.html(null);
+                            $.each(data.C, function (i, k) {
+                                var $ind = i + 1;
+                                $bdbb.append('<option value="' + i + '">保单年度' + $ind + '年，被保险人' + k + '岁</option>');
+                            });
+
+                            $scrollerA = (($bdbb.find('option').length - 1) / ($wrapperWidth - 20)).toFixed(4);
+                            $scrollerB = (($wrapperWidth - 20) / ($bdbb.find('option').length - 1)).toFixed(4);
+
+                            uvw();
+                        } else if (offA == 2) {
+                            uvw();
+
+                            var Cfb2tA = $('.con2_fixed1_box2_time.act');
+                            var S1 = Cfb2tA.find('select').eq(0).val();
+                            var S_1 = S1 - 1;
+
+                            if (parseInt($('.con2_fixed1_box2_time.act').find('.con_jine').val()) > dataM[S_1] * 0.2) {
+                                $.wjNotify('申请减保金额超过限额');
+                                $('.con4_zhuiling_lingqu span:last-child .con4_close').trigger('click');
+                                $('.loading').css('display', 'none');
+                                return false;
+                            }
+                            var $sNum = $('#jiaoFeiSel').val();
+                            var $jNum = $sNum == 1 ? 200000 : ($sNum == 3 ? 67000 : ($sNum == 5 ? 40000 : ($sNum == 10 ? 20000 : ($sNum == 15 ? 14000 : 10000))));
+                            if (dataU[S_1] < $jNum) {
+                                $.wjNotify('申请减保金额超过限额');
+                                $('.con4_zhuiling_lingqu span:last-child .con4_close').trigger('click');
+                                $('.loading').css('display', 'none');
+                                return false;
+                            }
+                        }
+
+                        // 账户价值低中高+追领累计
+                        function uvw() {
+                            $('#kuKz').html(data.Kzz);
+                            $('#kuSz').html(data.Szz);
+                            // $('#kuU').html(data.Uz.replace(/,/g,"")>0?data.Uz:'-');
+                            // $('#kuV').html(data.Vz.replace(/,/g,"")>0?data.Vz:'-');
+                            // $('#kuW').html(data.Wz.replace(/,/g,"")>0?data.Wz:'-');
+                        }
+
+                        // zlBf($zStart,$zEnd,0); // 追加保费
+                        zlBf($lStart, $lEnd, 1); // 部分领取
+                        // 追加保费+部分领取
+                        function zlBf(a, b, d) {
+
+                            if (d == 1 && $('#toubaoNo').hasClass('active')) {
+                                $.each($ku.P, function (i, k) {
+
+
+
+                                    if (k > ($ku.F[i] * 0.2)) {
+                                        $('.con4_zhuiling_lingqu span.active .con4_close').trigger('click');
+                                        $.wjNotify('申请减保金额超过限额');
+                                        $('.loading').css('display', 'none');
+                                        return false;
+                                    }
+
+
+                                });
+                                $('.con4_zhuiling_lingqu span').removeClass('active');
+                            }
+
+                            var $a = a;
+                            var $b = b;
+                            var $d = d == 0 ? data.M : data.O; // 0-K，1-S
+                            $a.html(null);
+                            $b.html(null);
+                            $.each(data.C, function (i, k) {
+                                var $i = i;
+                                var $ind = i + 1;
+                                if ($d[i] == 0) {
+                                    // $a.append('<option value="'+$ind+'">第'+$ind+'年,'+k+'岁</option>');
+                                    // $b.append('<option value="'+$ind+'">第'+$ind+'年,'+k+'岁</option>');
+                                    $a.append('<option value="' + $ind + '">' + k + '周岁</option>');
+                                    $b.append('<option value="' + $ind + '">' + k + '周岁</option>');
+                                    zlSCone($('#zStart'), $('#zEnd')); // 追加 select
+                                    zlSCone($('#lStart'), $('#lEnd')); // 领取 select
+                                }
+                            });
+
+                        } //zlBf(a,b,d)
+
+
+                        // // 附加信息
+                        // var fujia_jiaofeiqi = $('#jiaoFeiSel').val()-1+'年';
+                        // $('.kexuan-jiaofeiqi').html(fujia_jiaofeiqi+'交');
+                        // $('.kexuan-baoxianqi').html(fujia_jiaofeiqi);
+                        // $('.kexuan-baoxianfei').html($ku.O7);
+
+                        $('.loading').css('display', 'none');
+
+                    },
+                    error: function (data) {
+                        console.log(data, 0);
+                    }
+                });
+            }
+
+            // 追加领取联动
+            function ZLchange() {
+                var con4ZhuilingZhuijiaSpanLength = $('.con4_zhuiling_zhuijia span').length;
+                var con4ZhuilingLingquSpanLength = $('.con4_zhuiling_lingqu span').length;
+                if (con4ZhuilingZhuijiaSpanLength == 0 && con4ZhuilingLingquSpanLength == 0) {
+                    con4Zhuiling.removeClass('active');
+                }
+                if (con4ZhuilingZhuijiaSpanLength == 0) {
+                    con4ZhuilingBt.eq(0).removeClass('active');
+                    con4ZhuilingZhuijia.removeClass('active');
+                } else {
+                    con4Zhuiling.addClass('active');
+                    con4ZhuilingBt.eq(0).addClass('active');
+                    con4ZhuilingZhuijia.addClass('active');
+                }
+                if (con4ZhuilingLingquSpanLength == 0) {
+                    con4ZhuilingBt.eq(1).removeClass('active');
+                    con4ZhuilingLingqu.removeClass('active');
+                } else {
+                    con4Zhuiling.addClass('active');
+                    con4ZhuilingBt.eq(1).addClass('active');
+                    con4ZhuilingLingqu.addClass('active');
+                }
+            }
+
+        })(window);
+    </script>
+    <!-- 分享 -->
+    <!-- <img src="/longhapp/Public/Home/images/d4/top_logo2.jpg" style="display:none;" id="wjShareIco">
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script>	wx.config({
+            debug: false,
+            appId: 'wx0c36f531322f8342', // 必填，公众号的唯一标识
+            timestamp: 1731720039, // 必填，生成签名的时间戳，切记时间戳是整数型，别加引号
+            nonceStr: '8lcnEvJdbNJJ5FJm', // 必填，生成签名的随机串
+            signature: '9762c4616d0c877f86fb62070c5a199cb1f3ab7b', // 必填，签名，见附录1
+            jsApiList: [
+                'checkJsApi',
+                'onMenuShareTimeline',
+                'onMenuShareAppMessage',
+                'onMenuShareQQ',
+                'onMenuShareWeibo'
+            ]
+        });
+
+        var fxTitle = '康乐臻选(尊享版)';
+        var fxDesc = '康乐臻选(尊享版)';
+        var wjHost = ('https:' == document.location.protocol ? 'https://' : 'http://') + window.location.host;
+        var shareImg = wjHost + $('#wjShareIco').attr('src');
+
+
+        wx.ready(function () {
+
+            wx.onMenuShareQQ({
+                title: fxTitle,
+                desc: fxDesc,
+                link: window.location.href,
+                imgUrl: shareImg
+            });
+
+            wx.onMenuShareAppMessage({
+                title: fxTitle,
+                desc: fxDesc,
+                link: window.location.href,
+                imgUrl: shareImg
+            });
+
+            wx.onMenuShareTimeline({
+                title: fxTitle,
+                desc: fxDesc,
+                link: window.location.href,
+                imgUrl: shareImg
+            });
+            wx.onMenuShareWeibo({
+                title: fxTitle,
+                desc: fxDesc,
+                link: window.location.href,
+                imgUrl: shareImg
+            });
+        });
+
+
+
+
+    </script> -->
+</body>
+
+</html>
