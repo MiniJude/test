@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>icon_sel1@2x</title>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="页面1（绿）" transform="translate(-44.000000, -680.000000)" fill-rule="nonzero">
+            <g id="预约咨询" transform="translate(16.000000, 391.000000)">
+                <g id="编组-10" transform="translate(11.000000, 231.000000)">
+                    <g id="编组-8" transform="translate(1.000000, 42.000000)">
+                        <g id="编组-6" transform="translate(16.000000, 16.000000)">
+                            <g id="编组-11">
+                                <rect x="0" y="0" width="16" height="16"></rect>
+                                <rect id="矩形" stroke="#FFFFFF" fill="#26B384" x="0.5" y="0.5" width="15" height="15"></rect>
+                                <path d="M11.9689732,5.26626831 L7.64925361,11.3883429 C7.38875771,11.7594414 6.84930539,11.7594414 6.58880949,11.3883429 L4.03102702,7.76541662 C3.95308336,7.65429664 4.03102702,7.49914837 4.16435169,7.49914837 L5.12634051,7.49914837 C5.3355577,7.49914837 5.53451908,7.60188174 5.65758801,7.77799606 L7.11800599,9.84943771 L10.342412,5.2788479 C10.4654808,5.10483004 10.6623912,5 10.8736596,5 L11.8356485,5 C11.9689732,5 12.046917,5.15514846 11.9689732,5.26626831 Z" id="路径" fill="#FFFFFF"></path>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
