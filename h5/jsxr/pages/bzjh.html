@@ -68,11 +68,13 @@
         }
 
         .form_item .form_item_label {
-            width: 8.4rem;
+            /* width: 8.4rem; */
+            width: 10rem;
             font-size: 1.3rem;
             color: #2D2D2D;
             line-height: 2rem;
             flex-shrink: 0;
+            white-space: nowrap;
         }
 
         .form_item .form_item_value {
@@ -386,6 +388,7 @@
                 }
                 try {
                     result = await submit(params)
+                    // result = MockResult
 
                     // 获取滑块根容器
                     const sliderRoot = document.getElementById('slider-root');
