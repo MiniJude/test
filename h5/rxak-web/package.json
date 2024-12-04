@@ -10,12 +10,17 @@
   },
   "dependencies": {
     "less": "^4.2.1",
-    "vue": "^3.5.13"
+    "reset-css": "^5.0.2",
+    "vant": "^4.9.9",
+    "vue": "^3.5.13",
+    "vue-router": "^4.5.0"
   },
   "devDependencies": {
+    "@types/node": "^22.10.1",
     "@vitejs/plugin-vue": "^5.2.1",
-    "typescript": "~5.6.2",
-    "vite": "^6.0.1",
+    "postcss-px-to-viewport-8-plugin": "^1.2.5",
+    "typescript": "~5.7.2",
+    "vite": "^5.3.5",
     "vue-tsc": "^2.1.10"
   }
 }
