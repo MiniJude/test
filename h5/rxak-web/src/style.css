@@ -1,6 +1,11 @@
 @font-face {
   font-family: 'FZLTZHJW';
-  src: url('../assets/font/FZLTZHJW.TTF') format('truetype');
+  src: url('@/assets/font/FZLTZHJW.TTF') format('truetype');
+}
+
+:root:root {
+  --color-primary: #2897E2;
+  --van-base-font: 'FZLTZHJW', sans-serif
 }
 
 * {
@@ -11,9 +16,10 @@ html,
 body {
   width: 100%;
   height: 100%;
-  font-family: 'FZLTZHJW', sans-serif;
+  font-family: var(--van-base-font)!important;
 }
-/* 
+
+
 input,
 select {
   border: none;
@@ -22,19 +28,18 @@ select {
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-  height: 2rem;
-  font-size: 1.3rem;
-  color: #2D2D2D;
-  font-weight: 400;
+  height: 20px;
+  font-size: 13px !important;
+  color: #2D2D2D !important;
+  width: 80px;
+  text-align: right;
+  font-family: var(--van-base-font)!important;
 }
 
 input::-webkit-input-placeholder {
   color: rgba(45, 45, 45, 0.40);
-  font-size: 1.3rem;
-}
-
-:root {
-  --color-primary: #26b384;
+  font-size: 13px !important;
+  text-align: right;
 }
 
 input[type="radio"] {
@@ -59,13 +64,8 @@ label {
   -webkit-tap-highlight-color: rgba(255, 0, 0, 0);
 }
 
-select {
-  background: url(../assets/svgs/icon_more.svg) no-repeat right 12px center;
-  background-size: 2rem 2rem;
-}
-
 select:required:invalid {
-  color: rgba(45, 45, 45, 0.40);
+  color: rgba(45, 45, 45, 0.40) !important;
   position: relative;
 }
 
@@ -75,4 +75,4 @@ option[value=""][disabled] {
 
 option {
   color: black;
-} */
+}
