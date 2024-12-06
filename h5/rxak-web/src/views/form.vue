@@ -2,14 +2,12 @@
  * @Author: wangce 1546985690@qq.com
  * @Date: 2024-12-04 16:28:34
  * @LastEditors: wangce 1546985690@qq.com
- * @LastEditTime: 2024-12-05 17:18:36
+ * @LastEditTime: 2024-12-06 10:13:38
  * @Description: 
  * @FilePath: \rxak-web\src\views\form.vue
 -->
 <template>
     <div class="page">
-        <img style="width: 100%;" src="@/assets/images/img_bg1@2x.png" alt="">
-        <!-- 以下是绝对定位的元素 -->
         <img class="title_img" src="@/assets/images/img_top1@2x.png" alt="">
         <div class="form_panel form_panel_1">
             <div class="form_title">
@@ -61,19 +59,37 @@
                     <option value="方式二">方式二</option>
                 </select>
             </div>
-            <div class="form_item">
+            <div class="form_item form_item--number">
                 <div class="form_item_label">基本保险金额</div>
-                <div>
-                    <input type="number" placeholder="请输入金额">
-                    元
+                <div class="money_ipt">
+                    <div class="mins_btn">
+                        <img v-if="formData.ji_ben_bao_xian_jin_e <= MIN_MONEY" src="@/assets/svg/icon_mins.svg" alt="">
+                        <img v-else src="@/assets/svg/icon_mins2.svg" alt=""
+                            @click="formData.ji_ben_bao_xian_jin_e -= 1000">
+                    </div>
+                    <div>
+                        <input type="number" style="width: 86px;" placeholder="请输入金额"
+                            v-model="formData.ji_ben_bao_xian_jin_e">
+                    </div>
+                    <div class="pluss_btn">
+                        <img src="@/assets/svg/icon_pluss2.svg" alt="" @click="formData.ji_ben_bao_xian_jin_e += 1000">
+                    </div>
                 </div>
             </div>
         </div>
+        <div class="btn_group">
+            <div class="btn_s">投保须知</div>
+            <div class="btn_s">产品条款</div>
+        </div>
+        <div class="btn_b">生成建议书</div>
     </div>
 </template>
 
 <script lang="ts" setup>
-import { reactive } from 'vue';
+import { computed, reactive, ref, useTemplateRef } from 'vue';
+
+// 最低保险金额
+const MIN_MONEY = 100000
 
 // 不同的交费期间对应的最大年龄限制（前提是终身投保，否则最大30岁）
 // 如：选择终身投保且交费期间为5年，则投保年龄最大为60岁
@@ -104,7 +120,7 @@ const formData = reactive({
     // 身故保险金
     shen_gu_bao_xian_jin: '方式一',
     // 基本保险金额
-    ji_ben_bao_xian_jin_e: 0
+    ji_ben_bao_xian_jin_e: MIN_MONEY
 })
 
 
@@ -112,29 +128,32 @@ const formData = reactive({
 
 <style lang="less" scoped>
 .page {
+    height: 100%;
     font-size: 0;
     position: relative;
-    background: url('@/assets/images/img_bg2@2x.png') no-repeat top;
+    background: url('@/assets/images/img_bg1@2x.png') no-repeat top,
+        url('@/assets/images/img_bg2@2x.png') no-repeat top,
+        url('@/assets/images/img_bg2@2x.png') no-repeat bottom;
     background-size: 100%;
-    height: 1000px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 17px;
 
     .title_img {
-        position: absolute;
-        top: 19px;
         left: 32px;
         width: 317px;
+        margin-top: 19px;
     }
 
     .form_panel {
-        position: absolute;
         width: 343px;
-        left: 50%;
-        transform: translateX(-50%);
         background: #FFFFFF;
         border-radius: 4px 12px 4px 12px;
         border: 1px solid #FFFFFF;
         padding: 10px 10px 16px;
         font-size: 13px;
+        position: relative;
 
         &::after {
             content: '';
@@ -234,11 +253,80 @@ const formData = reactive({
     }
 
     .form_panel_1 {
-        top: 181px;
+        margin-top: 115px;
     }
 
     .form_panel_2 {
-        top: 372px;
+        margin-top: 16px;
     }
+}
+
+.money_ipt {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    input {
+        text-align: center;
+
+        &::placeholder {
+            text-align: center;
+        }
+    }
+}
+
+.form_item--number {
+    &::before {
+        content: '元';
+        position: absolute;
+        right: 8px;
+    }
+}
+
+.btn_group {
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+
+    .btn_s {
+        width: 164px;
+        height: 45px;
+        font-size: 18px;
+        line-height: 18px;
+        letter-spacing: 1px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &:first-child {
+            background: url('@/assets/images/btn_nu1@2x.png') no-repeat center / 100%;
+            color: #2897E2;
+            text-shadow: 0px 1px 1px #FFFFFF;
+        }
+
+        &:last-child {
+            background: url('@/assets/images/btn_nu2@2x.png') no-repeat center / 100%;
+            color: #FFFFFF;
+            text-shadow: 0px 1px 1px #084387;
+        }
+    }
+}
+
+.btn_b {
+    margin-top: 13px;
+    width: 345px;
+    height: 45px;
+    background: url('@/assets/images/btn_nu3@2x.png') no-repeat center / 100%;
+    color: #FFFFFF;
+    font-size: 18px;
+    line-height: 18px;
+    letter-spacing: 1px;
+    text-shadow: 0px 1px 1px #874508;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 </style>

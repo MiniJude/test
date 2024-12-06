@@ -19,6 +19,10 @@ body {
   font-family: var(--van-base-font)!important;
 }
 
+#app {
+  height: 100%;
+}
+
 
 input,
 select {
