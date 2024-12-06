@@ -2,7 +2,7 @@
  * @Author: wangce 1546985690@qq.com
  * @Date: 2024-12-04 16:28:34
  * @LastEditors: wangce 1546985690@qq.com
- * @LastEditTime: 2024-12-06 11:42:01
+ * @LastEditTime: 2024-12-06 16:37:41
  * @Description: 
  * @FilePath: \rxak-web\src\views\form.vue
 -->
@@ -11,7 +11,7 @@
         <img class="title_img" src="@/assets/images/img_top1@2x.png" alt="">
         <Modal class="form_panel form_panel_1" title="被保险人信息">
             <template #icon>
-                <img class="form_icon" src="@/assets/svg/icon_tit1.svg" alt="">
+                <img class="modal_icon" src="@/assets/svg/icon_tit1.svg" alt="">
             </template>
             <div class="form_item">
                 <div class="form_item_label">姓名</div>
@@ -35,7 +35,7 @@
         </Modal>
         <Modal class="form_panel form_panel_2" title="投保信息">
             <template #icon>
-                <img class="form_icon" src="@/assets/svg/icon_tit2.svg" alt="">
+                <img class="modal_icon" src="@/assets/svg/icon_tit2.svg" alt="">
             </template>
             <div class="form_item form_item--select">
                 <div class="form_item_label">保险期间</div>
@@ -76,16 +76,28 @@
             </div>
         </Modal>
         <div class="btn_group">
-            <div class="btn_s">投保须知</div>
+            <div class="btn_s" @click="showToubaoxuzhiModal = true">投保须知</div>
             <div class="btn_s">产品条款</div>
         </div>
         <div class="btn_b">生成建议书</div>
     </div>
+
+    <van-overlay :show="showToubaoxuzhiModal">
+        <div class="modal-wrapper">
+            <Modal title="投保须知" closable @close="showToubaoxuzhiModal = false">
+                <template #icon>
+                    <img class="modal_icon" src="@/assets/images/icon_tit4@2x.png" alt="">
+                </template>
+                <Toubaoxuzhi></Toubaoxuzhi>
+            </Modal>
+        </div>
+    </van-overlay>
 </template>
 
 <script lang="ts" setup>
-import { reactive } from 'vue';
+import { reactive, ref } from 'vue';
 import Modal from '@/components/Modal.vue';
+import Toubaoxuzhi from '@/views/toubaoxuzhi.vue';
 
 // 最低保险金额
 const MIN_MONEY = 100000
@@ -103,11 +115,7 @@ const AGE_LIMIT_BY_PERIOD = {
 // 交费期间
 const PERIOD = Object.keys(AGE_LIMIT_BY_PERIOD)
 
-// 基本保险金的规则：x >= 10000 && x % 10000 == 0
-
-
-
-
+// 表单
 const formData = reactive({
     user_name: '',
     age: -1,
@@ -118,16 +126,16 @@ const formData = reactive({
     jiao_fei_qi_jian: 5,
     // 身故保险金
     shen_gu_bao_xian_jin: '方式一',
-    // 基本保险金额
+    // 基本保险金额（基本保险金的规则：x >= 10000 && x % 10000 == 0）
     ji_ben_bao_xian_jin_e: MIN_MONEY
 })
 
+// 投保须知模态框
+const showToubaoxuzhiModal = ref(true)
 
 </script>
 
 <style lang="less" scoped>
-@import '@/styles/mixins.less';
-
 .page {
     height: 100%;
     font-size: 0;
@@ -278,5 +286,12 @@ const formData = reactive({
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.modal-wrapper {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 </style>
