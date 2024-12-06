@@ -77,7 +77,7 @@
         </Modal>
         <div class="btn_group">
             <div class="btn_s" @click="showToubaoxuzhiModal = true">投保须知</div>
-            <div class="btn_s">产品条款</div>
+            <div class="btn_s" @click="downloadPDF">产品条款</div>
         </div>
         <div class="btn_b">生成建议书</div>
     </div>
@@ -131,13 +131,25 @@ const formData = reactive({
 })
 
 // 投保须知模态框
-const showToubaoxuzhiModal = ref(true)
+const showToubaoxuzhiModal = ref(false)
+
+// 产品条款下载
+function downloadPDF() {
+    // PDF 文件的相对路径
+    const pdfUrl = '/《建信人寿瑞享安康重大疾病保险》保险条款.pdf'; // 这里是相对于 public 目录的路径
+
+    // 创建一个临时的 <a> 标签来触发下载
+    const link = document.createElement('a');
+    link.href = pdfUrl;
+    link.click(); // 模拟点击，触发下载
+}
 
 </script>
 
 <style lang="less" scoped>
 .page {
     height: 100%;
+    min-height: 724px;
     font-size: 0;
     position: relative;
     background: url('@/assets/images/img_bg1@2x.png') no-repeat top,
