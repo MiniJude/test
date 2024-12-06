@@ -2,18 +2,17 @@
  * @Author: wangce 1546985690@qq.com
  * @Date: 2024-12-04 16:28:34
  * @LastEditors: wangce 1546985690@qq.com
- * @LastEditTime: 2024-12-06 10:13:38
+ * @LastEditTime: 2024-12-06 11:42:01
  * @Description: 
  * @FilePath: \rxak-web\src\views\form.vue
 -->
 <template>
     <div class="page">
         <img class="title_img" src="@/assets/images/img_top1@2x.png" alt="">
-        <div class="form_panel form_panel_1">
-            <div class="form_title">
+        <Modal class="form_panel form_panel_1" title="被保险人信息">
+            <template #icon>
                 <img class="form_icon" src="@/assets/svg/icon_tit1.svg" alt="">
-                <div class="form_title_cha">被保险人信息</div>
-            </div>
+            </template>
             <div class="form_item">
                 <div class="form_item_label">姓名</div>
                 <input type="text" placeholder="请输入姓名" v-model="formData.user_name" />
@@ -33,12 +32,11 @@
                     <option v-for="i in 61" :value="i - 1">{{ i - 1 }}岁</option>
                 </select>
             </div>
-        </div>
-        <div class="form_panel form_panel_2">
-            <div class="form_title">
+        </Modal>
+        <Modal class="form_panel form_panel_2" title="投保信息">
+            <template #icon>
                 <img class="form_icon" src="@/assets/svg/icon_tit2.svg" alt="">
-                <div class="form_title_cha">投保信息</div>
-            </div>
+            </template>
             <div class="form_item form_item--select">
                 <div class="form_item_label">保险期间</div>
                 <select style="flex: 1;" required v-model="formData.bao_xian_qi_jian">
@@ -76,7 +74,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </Modal>
         <div class="btn_group">
             <div class="btn_s">投保须知</div>
             <div class="btn_s">产品条款</div>
@@ -86,7 +84,8 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, reactive, ref, useTemplateRef } from 'vue';
+import { reactive } from 'vue';
+import Modal from '@/components/Modal.vue';
 
 // 最低保险金额
 const MIN_MONEY = 100000
@@ -127,6 +126,8 @@ const formData = reactive({
 </script>
 
 <style lang="less" scoped>
+@import '@/styles/mixins.less';
+
 .page {
     height: 100%;
     font-size: 0;
@@ -147,57 +148,6 @@ const formData = reactive({
     }
 
     .form_panel {
-        width: 343px;
-        background: #FFFFFF;
-        border-radius: 4px 12px 4px 12px;
-        border: 1px solid #FFFFFF;
-        padding: 10px 10px 16px;
-        font-size: 13px;
-        position: relative;
-
-        &::after {
-            content: '';
-            display: block;
-            position: absolute;
-            left: 1px;
-            top: 1px;
-            right: 1px;
-            bottom: 1px;
-            border-radius: 4px 12px 4px 12px;
-            border: 3px solid #83c9f1;
-            pointer-events: none;
-        }
-
-        .form_title {
-            height: 26px;
-            display: flex;
-            align-items: center;
-            // line-height: 40px;
-            gap: 6px;
-            padding-left: 2px;
-
-            .form_icon {
-                width: 20px;
-            }
-
-            .form_title_cha {
-                font-size: 16px;
-                font-weight: bold;
-                color: #2999E5;
-                position: relative;
-
-                &::after {
-                    content: '';
-                    position: absolute;
-                    display: block;
-                    width: calc(100% + 12px);
-                    height: 40%;
-                    bottom: 2px;
-                    background-color: #def1ff;
-                    z-index: -1;
-                }
-            }
-        }
 
         .form_item {
             height: 40px;
