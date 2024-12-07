@@ -2,7 +2,7 @@
  * @Author: wangce 1546985690@qq.com
  * @Date: 2024-12-06 14:14:11
  * @LastEditors: wangce 1546985690@qq.com
- * @LastEditTime: 2024-12-06 16:57:44
+ * @LastEditTime: 2024-12-07 09:58:24
  * @Description: 投保须知
  * @FilePath: \rxak-web\src\views\toubaoxuzhi.vue
 -->
@@ -13,6 +13,7 @@
             <div class="list_item_desc">{{ item.desc }}</div>
         </div>
     </div>
+    <div class="divider"></div>
     <table>
         <colgroup class="col_group">
             <col class="col_1">
@@ -84,6 +85,8 @@ const list = [
 </script>
 
 <style lang="less" scoped>
+@import '@/styles/mixins.less';
+
 .list {
     padding: 16px 4px;
     display: flex;
@@ -115,6 +118,12 @@ const list = [
             white-space: pre-line;
         }
     }
+}
+
+.divider {
+    width: calc(100% - 8px);
+    margin: 0 auto;
+    .divider-styles();
 }
 
 table {

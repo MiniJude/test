@@ -2,7 +2,7 @@
  * @Author: wangce 1546985690@qq.com
  * @Date: 2024-12-04 16:28:34
  * @LastEditors: wangce 1546985690@qq.com
- * @LastEditTime: 2024-12-06 16:37:41
+ * @LastEditTime: 2024-12-07 10:57:48
  * @Description: 
  * @FilePath: \rxak-web\src\views\form.vue
 -->
@@ -79,25 +79,28 @@
             <div class="btn_s" @click="showToubaoxuzhiModal = true">投保须知</div>
             <div class="btn_s" @click="downloadPDF">产品条款</div>
         </div>
-        <div class="btn_b">生成建议书</div>
+        <div class="btn_b" @click="router.push('/result')">生成建议书</div>
+        <van-overlay :show="showToubaoxuzhiModal">
+            <div class="modal-wrapper">
+                <Modal title="投保须知" closable @close="showToubaoxuzhiModal = false">
+                    <template #icon>
+                        <img class="modal_icon" src="@/assets/images/icon_tit4@2x.png" alt="">
+                    </template>
+                    <Toubaoxuzhi></Toubaoxuzhi>
+                </Modal>
+            </div>
+        </van-overlay>
     </div>
 
-    <van-overlay :show="showToubaoxuzhiModal">
-        <div class="modal-wrapper">
-            <Modal title="投保须知" closable @close="showToubaoxuzhiModal = false">
-                <template #icon>
-                    <img class="modal_icon" src="@/assets/images/icon_tit4@2x.png" alt="">
-                </template>
-                <Toubaoxuzhi></Toubaoxuzhi>
-            </Modal>
-        </div>
-    </van-overlay>
 </template>
 
 <script lang="ts" setup>
 import { reactive, ref } from 'vue';
 import Modal from '@/components/Modal.vue';
 import Toubaoxuzhi from '@/views/toubaoxuzhi.vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter()
 
 // 最低保险金额
 const MIN_MONEY = 100000
@@ -154,7 +157,7 @@ function downloadPDF() {
     position: relative;
     background: url('@/assets/images/img_bg1@2x.png') no-repeat top,
         url('@/assets/images/img_bg2@2x.png') no-repeat top,
-        url('@/assets/images/img_bg2@2x.png') no-repeat bottom;
+        #2B9CEA;
     background-size: 100%;
     display: flex;
     flex-direction: column;
@@ -263,22 +266,25 @@ function downloadPDF() {
 
     .btn_s {
         width: 164px;
-        height: 45px;
+        height: 42px;
+        border: 2px solid #FFFFFF;
+        border-radius: 8px;
         font-size: 18px;
         line-height: 18px;
         letter-spacing: 1px;
         display: flex;
         align-items: center;
         justify-content: center;
+        box-shadow: 0px 2px 1px 0px rgba(29, 83, 116, 0.42);
 
         &:first-child {
-            background: url('@/assets/images/btn_nu1@2x.png') no-repeat center / 100%;
+            background: linear-gradient(180deg, #9FD8FF 0%, #FFFFFF 100%);
             color: #2897E2;
             text-shadow: 0px 1px 1px #FFFFFF;
         }
 
         &:last-child {
-            background: url('@/assets/images/btn_nu2@2x.png') no-repeat center / 100%;
+            background: linear-gradient(180deg, #2999E5 0%, #D0EDFF 100%);
             color: #FFFFFF;
             text-shadow: 0px 1px 1px #084387;
         }
@@ -288,8 +294,11 @@ function downloadPDF() {
 .btn_b {
     margin-top: 13px;
     width: 345px;
-    height: 45px;
-    background: url('@/assets/images/btn_nu3@2x.png') no-repeat center / 100%;
+    height: 42px;
+    border: 2px solid #FFFFFF;
+    border-radius: 8px;
+    background: linear-gradient(180deg, #F1A738 0%, #FFEEB9 100%);
+    box-shadow: 0px 2px 1px 0px rgba(29, 83, 116, 0.42);
     color: #FFFFFF;
     font-size: 18px;
     line-height: 18px;

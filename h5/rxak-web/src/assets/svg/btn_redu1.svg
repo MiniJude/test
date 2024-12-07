@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="36px" height="36px" viewBox="0 0 36 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>btn_redu1</title>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#2999E5" offset="0%"></stop>
+            <stop stop-color="#D0EDFF" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="瑞享安康页面2" transform="translate(-32.000000, -751.000000)" fill-rule="nonzero">
+            <g id="预约咨询" transform="translate(16.000000, 503.000000)">
+                <g id="编组-13" transform="translate(16.000000, 233.000000)">
+                    <g id="选取组" transform="translate(0.000000, 15.000000)">
+                        <g id="编组-11">
+                            <rect x="0" y="0" width="36" height="36"></rect>
+                            <rect id="Mask" fill="#F1F9FF" x="0" y="0" width="36" height="36"></rect>
+                            <g id="minus-circle-fill">
+                                <rect x="0" y="0" width="36" height="36"></rect>
+                                <rect id="矩形" fill="#000000" opacity="0" x="0" y="0" width="36" height="36"></rect>
+                                <path d="M18,1.5 C22.5559146,1.5 26.6809073,3.34705505 29.6669262,6.33307389 C32.6529449,9.31909265 34.5,13.4440853 34.5,18 C34.5,22.5559146 32.6529449,26.6809072 29.6669261,29.6669261 C26.6809072,32.6529449 22.5559146,34.5 18,34.5 C13.4440853,34.5 9.31909265,32.6529449 6.33307389,29.6669262 C3.34705505,26.6809073 1.5,22.5559146 1.5,18 C1.5,13.4440852 3.347055,9.31909254 6.33307377,6.33307377 C9.31909254,3.347055 13.4440852,1.5 18,1.5 Z M25.4144589,16.2764037 L10.1395109,16.6014026 L10.5855388,19.7235977 L25.8604872,19.398599 L25.4144589,16.2764037 Z" id="形状" stroke="#FFFFFF" fill="url(#linearGradient-1)" opacity="0.303631723"></path>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
