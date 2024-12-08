@@ -21,7 +21,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, reactive, onMounted, watch, useTemplateRef } from 'vue';
+import { onMounted } from 'vue';
 import { Slider } from '@/components/Slider.js';
 
 interface SliderProps {
@@ -31,19 +31,21 @@ interface SliderProps {
     initial?: number;
     leftColor?: string;
     rightColor?: string;
-    onChange?: (value: number) => void;
 }
 
-// const {
-//     min,
-//     max,
-//     step = 1,
-//     initial,
-//     leftColor = '#4caf50',
-//     rightColor = '#e0e0e0',
-//     onChange = () => { }
-// } = defineProps<SliderProps>();
+const {
+    min,
+    max,
+    step = 1,
+    initial,
+    leftColor = '#2B9CEA',
+    rightColor = '#A2DAFF',
+} = defineProps<SliderProps>();
 
+
+const emits = defineEmits<{
+    change: [val: number]
+}>();
 
 
 onMounted(() => {
@@ -51,26 +53,25 @@ onMounted(() => {
     const sliderRoot = document.getElementById('slider-root');
     new Slider({
         root: sliderRoot,
-        min: 0, // 最小值
-        max: 100, // 最大值
-        step: 1, // 步长
-        initial: 2, // 初始值
-        rightColor: 'rgba(199, 235, 220, 1)', // 右侧颜色
+        min, // 最小值
+        max, // 最大值
+        step, // 步长
+        initial: initial ?? min, // 初始值
+        leftColor, // 左侧颜色
+        rightColor, // 右侧颜色
         onChange: (value: number) => {
             console.log(`滑块当前值: ${value}`);
-        },
+            emits('change', value)
+        }
     })
 })
 
 </script>
 
 <style scoped>
-#slider-root {
-    margin-top: 2rem;
-}
-
 #slider-root .button img {
     display: none;
+    width: 36px;
 }
 
 #slider-root .button.disabled img:last-child {
@@ -84,7 +85,7 @@ onMounted(() => {
 .slider-container {
     display: flex;
     align-items: center;
-    gap: 0.8rem;
+    gap: 8px;
 }
 
 .slider-container .button {
@@ -98,16 +99,16 @@ onMounted(() => {
 
 .track {
     position: relative;
-    height: .8rem;
+    height: 8px;
     background-color: transparent;
-    border-radius: .4rem;
+    border-radius: 4px;
     display: flex;
 }
 
 .track-left,
 .track-right {
     height: 100%;
-    border-radius: 1.8rem;
+    border-radius: 18px;
 }
 
 .track-left {
@@ -123,47 +124,30 @@ onMounted(() => {
 
 .thumb {
     position: absolute;
-    width: 1.6rem;
-    height: 1.6rem;
+    width: 14px;
+    height: 14px;
     background-color: #fff;
-    border: 0.3rem solid rgba(245, 137, 0, 1);
+    border: 3px solid #F1A738;
     border-radius: 50%;
     cursor: pointer;
     top: 50%;
     transform: translate(-50%, -50%);
-    z-index: 2;
+    z-index: 1;
 }
 
 .tooltip {
-    padding: .4rem 1rem;
-    font-size: 1rem;
-    color: rgba(245, 137, 0, 1);
-    background: #FFF5D7;
-    border: .1rem solid rgba(245, 137, 0, 1);
-    border-radius: .6rem;
+    width: 42px;
+    height: 23px;
+    display: inline-block;
+    line-height: 20px;
+    text-align: center;
+    font-size: 11px;
+    color: #FFFFFF;
+    text-shadow: 0px 1px 2px #874508;
     position: absolute;
-    bottom: 2rem;
+    bottom: 14px;
     left: 0;
     transform: translateX(-50%);
-    width: max-content;
-}
-
-.tooltip::before,
-.tooltip::after {
-    position: absolute;
-    bottom: -1.2rem;
-    left: calc(50% - .5rem);
-    display: block;
-    font-size: 0;
-    line-height: 0;
-    border-color: rgba(245, 137, 0, 1) transparent transparent;
-    border-style: solid;
-    border-width: .6rem;
-    content: "";
-}
-
-.tooltip::after {
-    bottom: -1.05rem;
-    border-color: #FFF5D7 transparent transparent;
+    background: url('@/assets/svg/img_Mask.svg') no-repeat center / 100%;
 }
 </style>

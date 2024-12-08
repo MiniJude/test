@@ -1,29 +1,29 @@
 <template>
     <div class="page">
         <img class="title_img" src="@/assets/images/img_top1@2x.png" alt="">
-        <Modal class="form_panel form_panel_1" title="尊敬的 xxx 女士">
+        <Modal class="form_panel form_panel_1" :title="`尊敬的 ${params.user_name} ${params.sex === 'M' ? '先生' : '女士'}`">
             <template #icon>
                 <img class="modal_icon" src="@/assets/svg/icon_head1.svg" alt="">
             </template>
             <div class="form_item">
                 <div class="form_item_label">年交保险费</div>
-                <div class="form_item_value">xx元</div>
+                <div class="form_item_value">{{ result?.nianJiaoBaoXianFei?.toFixed(2) ?? 'xx' }}元</div>
             </div>
             <div class="form_item">
                 <div class="form_item_label">交费期间</div>
-                <div class="form_item_value">xx元</div>
+                <div class="form_item_value">{{ params.jiao_fei_qi_jian ?? 'xx' }}年</div>
             </div>
             <div class="form_item">
                 <div class="form_item_label">身故保险金</div>
-                <div class="form_item_value">方式X</div>
+                <div class="form_item_value">{{ params.shen_gu_bao_xian_jin }}</div>
             </div>
             <div class="form_item">
                 <div class="form_item_label">基本保险金额</div>
-                <div class="form_item_value">xx元</div>
+                <div class="form_item_value">{{ Number(params.ji_ben_bao_xian_jin_e).toFixed(2) }}元</div>
             </div>
             <div class="form_item">
                 <div class="form_item_label">保险期间</div>
-                <div class="form_item_value">xx</div>
+                <div class="form_item_value">{{ params.bao_xian_qi_jian }}</div>
             </div>
         </Modal>
         <div class="btn_group">
@@ -34,25 +34,28 @@
             <template #icon>
                 <img class="modal_icon" src="@/assets/images/icon_tit3@2x.png" alt="">
             </template>
-            <div class="age_tip">被保险人年末年龄为 XX 周岁时（即第XX保单年度）</div>
+            <div class="age_tip">被保险人年末年龄为 {{ currentYearResult?.nianMoNianLing }} 周岁时（即第{{
+                currentYearResult?.baoDanNianDu
+            }}保单年度）</div>
 
             <div class="form_item">
                 <div class="form_item_label">已交保险费（累计）</div>
-                <div class="form_item_value">xx元</div>
+                <div class="form_item_value">{{ currentYearResult?.leijiaBaoXianFei?.toFixed(2) ?? 'xx' }}元</div>
             </div>
             <div class="form_item">
                 <div class="form_item_label">重大疾病保险金</div>
-                <div class="form_item_value">xx元</div>
+                <div class="form_item_value">{{ currentYearResult?.zhongDaJiBingBaoXianJin?.toFixed(2) ?? 'xx' }}元</div>
             </div>
             <div class="form_item">
                 <div class="form_item_label">身故保险金</div>
-                <div class="form_item_value">xx元</div>
+                <div class="form_item_value">{{ currentYearResult?.shengGuBaoXianJin?.toFixed(2) ?? 'xx' }}元</div>
             </div>
             <div class="form_item">
                 <div class="form_item_label">保单年度末现金价值</div>
-                <div class="form_item_value">xx元</div>
+                <div class="form_item_value">{{ currentYearResult?.xianJinJiaZhi?.toFixed(2) ?? 'xx' }}元</div>
             </div>
-            <Slider :min="0" :max="60"></Slider>
+            <Slider class="slider" :min="Number(params.age) + 1" :max="params.bao_xian_qi_jian === '终身' ? 106 : 80"
+                @change="handleSliderChange"></Slider>
             <div class="tip_message">
                 <img class="tip_message_icon" src="@/assets/svg/info-circle.svg" alt="">
                 <div>1. 上述利益演示中的现金价值为保单年度末的值。</div>
@@ -62,8 +65,8 @@
         </Modal>
         <div class="btn_b">查看利益演示表</div>
         <div class="btn_group">
-            <div class="btn_s">重新试算</div>
-            <div class="btn_s submit_btn">立即投保</div>
+            <div class="btn_s" @click="router.push('/form')">重新试算</div>
+            <div class="btn_s submit_btn" @click="showToast('敬请期待')">立即投保</div>
         </div>
         <van-overlay :show="showToubaoxuzhiModal">
             <div class="modal-wrapper">
@@ -80,10 +83,17 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
+import axios from 'axios';
 import Modal from '@/components/Modal.vue';
 import Toubaoxuzhi from '@/views/toubaoxuzhi.vue';
 import Slider from '@/components/Slider.vue';
+import { useRoute, useRouter } from 'vue-router';
+import { showFailToast, showToast } from 'vant';
+import { InsuranceType } from '@/types';
+
+const route = useRoute()
+const router = useRouter()
 
 // 投保须知模态框
 const showToubaoxuzhiModal = ref(false)
@@ -98,6 +108,52 @@ function downloadPDF() {
     link.href = pdfUrl;
     link.click(); // 模拟点击，触发下载
 }
+
+interface ResultType {
+    nianJiaoBaoXianFei: number
+    nianJiaoHuaBaoXianFei: number
+    xianJinJiaZhiBiaoList: {
+        baoDanNianDu: number
+        code: string
+        leijiaBaoXianFei: number
+        nianJiaoBaoXianFei: number
+        nianMoNianLing: number
+        shengGuBaoXianJin: number
+        xianJinJiaZhi: number
+        zhongDaJiBingBaoXianJin: number
+    }[]
+}
+
+const result = ref<ResultType>()
+const params = route.query as unknown as InsuranceType
+
+async function getResult() {
+    try {
+        const res = await axios.post<ResultType>('http://dev.wangyijie.net:18081/toubao/compute', {
+            ...params,
+            bao_xian_qi_jian: params.bao_xian_qi_jian === '终身' ? 106 : 80,
+            jiao_fei_qi_jian: +params.jiao_fei_qi_jian,
+            age: +params.age,
+            ji_ben_bao_xian_jin_e: +params.ji_ben_bao_xian_jin_e,
+        })
+        if (res.status === 200) {
+            result.value = res.data
+        } else {
+            showFailToast('网络错误，请联系管理员')
+        }
+    } catch (error: any) {
+        showToast(error)
+    }
+}
+getResult()
+
+const currentAge = ref(0)
+function handleSliderChange(val: number) {
+    currentAge.value = val
+}
+const currentYearResult = computed(() => {
+    return result.value?.xianJinJiaZhiBiaoList.find(item => item.nianMoNianLing === currentAge.value)
+})
 
 </script>
 
@@ -261,5 +317,10 @@ function downloadPDF() {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+
+.slider {
+    margin-top: 20px;
 }
 </style>

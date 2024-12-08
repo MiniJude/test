@@ -27,10 +27,13 @@
             </div>
             <div class="form_item form_item--select">
                 <div class="form_item_label">年龄</div>
-                <select style="flex: 1;" name="age" required v-model="formData.age">
-                    <option disabled selected hidden value="">请选择年龄</option>
-                    <option v-for="i in 61" :value="i - 1">{{ i - 1 }}岁</option>
-                </select>
+                <div class="select_wrapper">
+                    <select style="flex: 1;" name="age" required v-model="formData.age">
+                        <option disabled selected hidden value="">请选择年龄</option>
+                        <option v-for="i in 58" :value="i - 1">{{ i - 1 }}岁</option>
+                    </select>
+                    <span class="my_placeholder" v-if="formData.age < 0">请选择年龄</span>
+                </div>
             </div>
         </Modal>
         <Modal class="form_panel form_panel_2" title="投保信息">
@@ -79,7 +82,7 @@
             <div class="btn_s" @click="showToubaoxuzhiModal = true">投保须知</div>
             <div class="btn_s" @click="downloadPDF">产品条款</div>
         </div>
-        <div class="btn_b" @click="router.push('/result')">生成建议书</div>
+        <div class="btn_b" @click="submit">生成建议书</div>
         <van-overlay :show="showToubaoxuzhiModal">
             <div class="modal-wrapper">
                 <Modal title="投保须知" closable @close="showToubaoxuzhiModal = false">
@@ -99,12 +102,39 @@ import { reactive, ref } from 'vue';
 import Modal from '@/components/Modal.vue';
 import Toubaoxuzhi from '@/views/toubaoxuzhi.vue';
 import { useRouter } from 'vue-router';
+import { showToast } from 'vant';
+import { InsuranceType } from '@/types';
 
 const router = useRouter()
 
 // 最低保险金额
 const MIN_MONEY = 100000
 
+// 表单
+const formData = reactive<InsuranceType>({
+    user_name: '',
+    age: -1,
+    sex: 'M',
+    bao_xian_qi_jian: '终身',
+    jiao_fei_qi_jian: 5,
+    shen_gu_bao_xian_jin: '方式一',
+    ji_ben_bao_xian_jin_e: MIN_MONEY,
+    jian_kang_deng_ji: 'A',
+    jiao_fei_fang_shi: '年交',
+})
+
+
+
+// 验证姓名
+const nameCheckPromiseFn = () => new Promise((resolve, reject) => {
+    if (!formData.user_name) {
+        reject('请输入姓名')
+        return
+    }
+    resolve('')
+})
+
+// 验证年龄
 // 不同的交费期间对应的最大年龄限制（前提是终身投保，否则最大30岁）
 // 如：选择终身投保且交费期间为5年，则投保年龄最大为60岁
 const AGE_LIMIT_BY_PERIOD = {
@@ -114,24 +144,42 @@ const AGE_LIMIT_BY_PERIOD = {
     20: 45,
     30: 35
 }
+const ageCheckPromiseFn = () => new Promise((resolve, reject) => {
+    const err_msg = '不符合投保年龄要求'
+    if (formData.age < 0) {
+        reject('请选择年龄')
+        return
+    }
+
+    if (formData.bao_xian_qi_jian !== '终身' && formData.age > 30) {
+        // reject('非终身投保，年龄不能超过30岁')
+        reject(err_msg)
+        return
+    }
+    if (formData.bao_xian_qi_jian === '终身' && formData.jiao_fei_qi_jian && formData.age > AGE_LIMIT_BY_PERIOD[formData.jiao_fei_qi_jian]) {
+        // reject(`终身投保，交费期间为${formData.jiao_fei_qi_jian}年，年龄不能超过${AGE_LIMIT_BY_PERIOD[formData.jiao_fei_qi_jian]}岁`)
+        reject(err_msg)
+        return
+    }
+    resolve('')
+})
+
+const moneyCheckPromiseFn = () => new Promise((resolve, reject) => {
+    // const err_msg = '基本保险金额不符合要求'
+    if (formData.ji_ben_bao_xian_jin_e < MIN_MONEY) {
+        reject('最低基本保险金额100000元')
+        return
+    }
+    // 必须是1000的倍数
+    if (formData.ji_ben_bao_xian_jin_e % 1000 !== 0) {
+        reject('需为1000元的整数倍')
+        return
+    }
+    resolve('')
+})
 
 // 交费期间
 const PERIOD = Object.keys(AGE_LIMIT_BY_PERIOD)
-
-// 表单
-const formData = reactive({
-    user_name: '',
-    age: -1,
-    sex: 'M',
-    // 保险期间
-    bao_xian_qi_jian: '终身',
-    // 交费期间
-    jiao_fei_qi_jian: 5,
-    // 身故保险金
-    shen_gu_bao_xian_jin: '方式一',
-    // 基本保险金额（基本保险金的规则：x >= 10000 && x % 10000 == 0）
-    ji_ben_bao_xian_jin_e: MIN_MONEY
-})
 
 // 投保须知模态框
 const showToubaoxuzhiModal = ref(false)
@@ -145,6 +193,18 @@ function downloadPDF() {
     const link = document.createElement('a');
     link.href = pdfUrl;
     link.click(); // 模拟点击，触发下载
+}
+
+function submit() {
+    const checkPromiseList = [nameCheckPromiseFn(), ageCheckPromiseFn(), moneyCheckPromiseFn()]
+    Promise.all(checkPromiseList).then(() => {
+        router.push({
+            path: '/result',
+            query: formData
+        })
+    }).catch(err => {
+        showToast(err)
+    })
 }
 
 </script>
@@ -314,5 +374,20 @@ function downloadPDF() {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.select_wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    .my_placeholder {
+        position: absolute;
+        right: 0;
+        color: rgba(45, 45, 45, 0.40);
+        font-size: 13px;
+        padding-right: 2px;
+        pointer-events: none;
+    }
 }
 </style>
