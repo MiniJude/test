@@ -14,3 +14,19 @@ export interface InsuranceType {
     ji_ben_bao_xian_jin_e: number;
     [k: string]: any;
 }
+
+
+export interface ResultType {
+    nianJiaoBaoXianFei: number
+    nianJiaoHuaBaoXianFei: number
+    xianJinJiaZhiBiaoList: {
+        baoDanNianDu: number
+        code: string
+        leijiaBaoXianFei: number
+        nianJiaoBaoXianFei: number
+        nianMoNianLing: number
+        shengGuBaoXianJin: number
+        xianJinJiaZhi: number
+        zhongDaJiBingBaoXianJin: number
+    }[]
+}

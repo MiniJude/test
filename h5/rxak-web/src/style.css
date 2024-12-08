@@ -1,11 +1,11 @@
 @font-face {
-  font-family: 'FZLTZHJW';
-  src: url('@/assets/font/FZLTZHJW.TTF') format('truetype');
+  font-family: "FZLTZHJW";
+  src: url("@/assets/font/FZLTZHJW.TTF") format("truetype");
 }
 
 :root:root {
-  --color-primary: #2897E2;
-  --van-base-font: 'FZLTZHJW', sans-serif
+  --color-primary: #2897e2;
+  --van-base-font: "FZLTZHJW", sans-serif;
 }
 
 * {
@@ -16,13 +16,12 @@ html,
 body {
   width: 100%;
   height: 100%;
-  font-family: var(--van-base-font)!important;
+  font-family: var(--van-base-font) !important;
 }
 
 #app {
   height: 100%;
 }
-
 
 input,
 select {
@@ -34,14 +33,14 @@ select {
   -moz-appearance: none;
   height: 20px;
   font-size: 13px !important;
-  color: #2D2D2D !important;
+  color: #2d2d2d !important;
   width: 80px;
   text-align: right;
-  font-family: var(--van-base-font)!important;
+  font-family: var(--van-base-font) !important;
 }
 
 input::-webkit-input-placeholder {
-  color: rgba(45, 45, 45, 0.40);
+  color: rgba(45, 45, 45, 0.4);
   font-size: 13px !important;
   text-align: right;
 }
@@ -69,7 +68,7 @@ label {
 }
 
 select:required:invalid {
-  color: rgba(45, 45, 45, 0.40) !important;
+  color: rgba(45, 45, 45, 0.4) !important;
   position: relative;
 }
 

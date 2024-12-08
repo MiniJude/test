@@ -153,8 +153,13 @@ table {
     }
 
     thead {
-
         background: #DEF1FF;
+
+        tr th {
+            color: #1085D5;
+            padding-top: 6px;
+            height: 57px;
+        }
     }
 
     tr th,

@@ -63,7 +63,7 @@
                     项给付责任中的一项。</div>
             </div>
         </Modal>
-        <div class="btn_b">查看利益演示表</div>
+        <div class="btn_b" @click="showLiYiYanShiModal = true">查看利益演示表</div>
         <div class="btn_group">
             <div class="btn_s" @click="router.push('/form')">重新试算</div>
             <div class="btn_s submit_btn" @click="showToast('敬请期待')">立即投保</div>
@@ -75,6 +75,17 @@
                         <img class="modal_icon" src="@/assets/images/icon_tit4@2x.png" alt="">
                     </template>
                     <Toubaoxuzhi></Toubaoxuzhi>
+                </Modal>
+            </div>
+        </van-overlay>
+        <!-- 利益演示表 -->
+        <van-overlay :show="showLiYiYanShiModal" class-name="table_overlay" :lock-scroll="false">
+            <div class="modal-wrapper yanshi_table_modal_wrapper">
+                <Modal style="height: 100%;" title="利益演示" closable @close="showLiYiYanShiModal = false">
+                    <template #icon>
+                        <img class="modal_icon" src="@/assets/images/icon_tit4@2x.png" alt="">
+                    </template>
+                    <Liyiyanshi :list="result?.xianJinJiaZhiBiaoList ?? []"></Liyiyanshi>
                 </Modal>
             </div>
         </van-overlay>
@@ -90,7 +101,8 @@ import Toubaoxuzhi from '@/views/toubaoxuzhi.vue';
 import Slider from '@/components/Slider.vue';
 import { useRoute, useRouter } from 'vue-router';
 import { showFailToast, showToast } from 'vant';
-import { InsuranceType } from '@/types';
+import { InsuranceType, ResultType } from '@/types';
+import Liyiyanshi from './liyiyanshi.vue';
 
 const route = useRoute()
 const router = useRouter()
@@ -109,24 +121,10 @@ function downloadPDF() {
     link.click(); // 模拟点击，触发下载
 }
 
-interface ResultType {
-    nianJiaoBaoXianFei: number
-    nianJiaoHuaBaoXianFei: number
-    xianJinJiaZhiBiaoList: {
-        baoDanNianDu: number
-        code: string
-        leijiaBaoXianFei: number
-        nianJiaoBaoXianFei: number
-        nianMoNianLing: number
-        shengGuBaoXianJin: number
-        xianJinJiaZhi: number
-        zhongDaJiBingBaoXianJin: number
-    }[]
-}
-
 const result = ref<ResultType>()
 const params = route.query as unknown as InsuranceType
 
+// 数据请求
 async function getResult() {
     try {
         const res = await axios.post<ResultType>('http://dev.wangyijie.net:18081/toubao/compute', {
@@ -154,6 +152,10 @@ function handleSliderChange(val: number) {
 const currentYearResult = computed(() => {
     return result.value?.xianJinJiaZhiBiaoList.find(item => item.nianMoNianLing === currentAge.value)
 })
+
+
+// 利益演示表
+const showLiYiYanShiModal = ref(false)
 
 </script>
 
@@ -322,5 +324,27 @@ const currentYearResult = computed(() => {
 
 .slider {
     margin-top: 20px;
+}
+
+.table_overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .yanshi_table_modal_wrapper {
+        max-height: 85vh;
+        display: flex;
+        align-items: center;
+
+        .modal {
+            display: flex;
+            flex-direction: column;
+
+            .liyiyanshi {
+                flex: 1;
+                min-height: 0;
+            }
+        }
+    }
 }
 </style>
