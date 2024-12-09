@@ -63,7 +63,7 @@ label {
 }
 
 select {
-  background: url(../assets/svgs/icon_more.svg) no-repeat right 12px center;
+  background: url(../assets/svgs/icon_more.svg) no-repeat right center;
   background-size: 2rem 2rem;
 }
 

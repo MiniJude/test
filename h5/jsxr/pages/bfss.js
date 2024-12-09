@@ -20,16 +20,16 @@ function validate() {
             return
         }
 
-        // 缴费期间不能为空
+        // 交费期间不能为空
         const period = $('select[name="period"]').val();
         if (period === null) {
-            reject('缴费期间不能为空');
+            reject('交费期间不能为空');
             return
         }
 
-        // 验证缴费期间的最高投保年龄
+        // 验证交费期间的最高投保年龄
         if (age > MAX_AGE[period]) {
-            reject(`所选缴费期间的最高投保年龄为${MAX_AGE[period]}岁，当前年龄超过上限`)
+            reject(`所选交费期间的最高投保年龄为${MAX_AGE[period]}岁，当前年龄超过上限`)
             return
         }
 
@@ -72,7 +72,7 @@ $('.submit_btn').click(async function () {
             user_name: $('input[name="name"]').val(),
             age: $('select[name="age"]').val(),
             sex: $('input[name="sex"]:checked').val() === 'M' ? '男' : '女',
-            jiao_fei_fang_shi: '年缴',
+            jiao_fei_fang_shi: '年交',
             jian_kang_deng_ji: 'A',
             qing_zhen_bao_xian_jin_ji_qing_zhen_huo_mian_bao_xian_fei: $('.sub_panel .checkbox_wrapper').eq(0).hasClass('checked'),
             zhong_zhen_bao_xian_jin_ji_zhong_zhen_huo_mian_bao_xian_fei: $('.sub_panel .checkbox_wrapper').eq(1).hasClass('checked'),
