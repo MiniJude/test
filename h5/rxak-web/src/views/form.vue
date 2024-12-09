@@ -2,7 +2,7 @@
  * @Author: wangce 1546985690@qq.com
  * @Date: 2024-12-04 16:28:34
  * @LastEditors: wangce 1546985690@qq.com
- * @LastEditTime: 2024-12-07 10:57:48
+ * @LastEditTime: 2024-12-09 14:23:45
  * @Description: 
  * @FilePath: \rxak-web\src\views\form.vue
 -->
@@ -15,7 +15,10 @@
             </template>
             <div class="form_item">
                 <div class="form_item_label">姓名</div>
-                <input type="text" placeholder="请输入姓名" v-model="formData.user_name" />
+                <div class="ipt_wrapper">
+                    <input style="flex: 1;" type="text" v-model="formData.user_name" />
+                    <span class="my_placeholder" v-if="!formData.user_name">请输入姓名</span>
+                </div>
             </div>
             <div class="form_item">
                 <div class="form_item_label">性别</div>
@@ -27,7 +30,7 @@
             </div>
             <div class="form_item form_item--select">
                 <div class="form_item_label">年龄</div>
-                <div class="select_wrapper">
+                <div class="ipt_wrapper">
                     <select style="flex: 1;" name="age" required v-model="formData.age">
                         <option disabled selected hidden value="">请选择年龄</option>
                         <option v-for="i in 58" :value="i - 1">{{ i - 1 }}岁</option>
@@ -83,7 +86,7 @@
             <div class="btn_s" @click="downloadPDF">产品条款</div>
         </div>
         <div class="btn_b" @click="submit">生成建议书</div>
-        <van-overlay :show="showToubaoxuzhiModal">
+        <van-overlay :show="showToubaoxuzhiModal" :lock-scroll="false">
             <div class="modal-wrapper">
                 <Modal title="投保须知" closable @close="showToubaoxuzhiModal = false">
                     <template #icon>
@@ -210,6 +213,9 @@ function submit() {
 </script>
 
 <style lang="less" scoped>
+select {
+    direction: rtl; /* 兼容iphone文字方向 */
+}
 .page {
     height: 100%;
     min-height: 724px;
@@ -376,7 +382,7 @@ function submit() {
     align-items: center;
 }
 
-.select_wrapper {
+.ipt_wrapper {
     position: relative;
     display: flex;
     align-items: center;

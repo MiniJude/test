@@ -68,7 +68,7 @@
             <div class="btn_s" @click="router.push('/form')">重新试算</div>
             <div class="btn_s submit_btn" @click="showToast('敬请期待')">立即投保</div>
         </div>
-        <van-overlay :show="showToubaoxuzhiModal">
+        <van-overlay :show="showToubaoxuzhiModal" :lock-scroll="false">
             <div class="modal-wrapper">
                 <Modal title="投保须知" closable @close="showToubaoxuzhiModal = false">
                     <template #icon>
