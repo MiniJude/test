@@ -299,7 +299,7 @@
                         <img src="../assets/svgs/icon_8.svg" alt="">
                         <span>轻症豁免保险费</span>
                     </div>
-                    <div class="sub_panel_item_value qing_zheng_huo_zhong_zheng_huo_mian_bao_xian_jin"></div>
+                    <div class="sub_panel_item_value qing_zheng_huo_mian_bao_xian_jin"></div>
                 </div>
                 <div class="sub_panel_item">
                     <div class="sub_panel_item_label">
@@ -317,7 +317,7 @@
                         <img src="../assets/svgs/icon_10.svg" alt="">
                         <span>中症豁免保险费</span>
                     </div>
-                    <div class="sub_panel_item_value qing_zheng_huo_zhong_zheng_huo_mian_bao_xian_jin"></div>
+                    <div class="sub_panel_item_value zhong_zheng_huo_mian_bao_xian_jin"></div>
                 </div>
                 <div class="sub_panel_item">
                     <div class="sub_panel_item_label">
@@ -447,11 +447,18 @@
                 $('#qing_zheng_bao_xian_jin').text((current.qing_zheng_bao_xian_jin || '- - ') + '元')
 
                 // 轻症豁免保险费
-                $('.qing_zheng_huo_zhong_zheng_huo_mian_bao_xian_jin').text((current.qing_zheng_huo_zhong_zheng_huo_mian_bao_xian_jin || '- - ') + '元')
-
+                $('.qing_zheng_huo_mian_bao_xian_jin').text((current.qing_zheng_huo_zhong_zheng_huo_mian_bao_xian_jin || '- - ') + '元')
+                
                 // 中症保险金
                 $('#zhong_zheng_bao_xian_jin').text((current.zhong_zheng_bao_xian_jin || '- - ') + '元')
-
+                
+                // 中症豁免保险费
+                if (params.zhong_zhen_bao_xian_jin_ji_zhong_zhen_huo_mian_bao_xian_fei === 'false') {
+                    $('.zhong_zheng_huo_mian_bao_xian_jin').text('- - 元')
+                } else {
+                    $('.zhong_zheng_huo_mian_bao_xian_jin').text((current.qing_zheng_huo_zhong_zheng_huo_mian_bao_xian_jin || '- - ') + '元')
+                }
+                
                 // 额外重大疾病保险金
                 $('#e_wai_zhong_da_ji_bing_bao_xian_jin').text((current.e_wai_zhong_da_ji_bing_bao_xian_jin || '- - ') + '元')
             }
