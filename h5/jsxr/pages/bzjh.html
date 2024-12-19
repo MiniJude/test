@@ -450,6 +450,14 @@
                 return r + (!!fraction ? "." + fraction : "");
             }
 
+            function zeroFormatter(v) {
+                if (v === '0.00' || v === '0') {
+                    return '- - '
+                } else {
+                    return v
+                }
+            }
+
             function updateCalcResultDom(value) {
                 // 当前多少周岁
                 $('#current_age').text(value)
@@ -461,32 +469,32 @@
                 const current = result.resp_xian_jin_jia_zhi[value - params.age]
 
                 // 重大疾病保险金
-                $('#zhong_da_ji_bing_bao_xian_jin').text((numberWithCommas(current.zhong_da_ji_bing_bao_xian_jin) || '- - ') + '元')
+                $('#zhong_da_ji_bing_bao_xian_jin').text(zeroFormatter(numberWithCommas(current.zhong_da_ji_bing_bao_xian_jin.toFixed(2))) + '元')
 
                 // 特定疾病保险金
-                $('#te_ding_ji_bing_bao_xian_jin').text((numberWithCommas(current.te_ding_ji_bing_bao_xian_jin) || '- - ') + '元')
+                $('#te_ding_ji_bing_bao_xian_jin').text(zeroFormatter(numberWithCommas(current.te_ding_ji_bing_bao_xian_jin.toFixed(2))) + '元')
 
                 // 身故保险金
-                $('#shen_gu_bao_xian_jin').text((numberWithCommas(current.shen_gu_bao_xian_jin) || '- - ') + '元')
+                $('#shen_gu_bao_xian_jin').text(zeroFormatter(numberWithCommas(current.shen_gu_bao_xian_jin.toFixed(2))) + '元')
 
                 // 轻症保险金
-                $('#qing_zheng_bao_xian_jin').text((numberWithCommas(current.qing_zheng_bao_xian_jin) || '- - ') + '元')
+                $('#qing_zheng_bao_xian_jin').text(zeroFormatter(numberWithCommas(current.qing_zheng_bao_xian_jin.toFixed(2))) + '元')
 
                 // 轻症豁免保险费
-                $('.qing_zheng_huo_mian_bao_xian_jin').text((numberWithCommas(current.qing_zheng_huo_zhong_zheng_huo_mian_bao_xian_jin) || '- - ') + '元')
+                $('.qing_zheng_huo_mian_bao_xian_jin').text(zeroFormatter(numberWithCommas(current.qing_zheng_huo_zhong_zheng_huo_mian_bao_xian_jin.toFixed(2))) + '元')
                 
                 // 中症保险金
-                $('#zhong_zheng_bao_xian_jin').text((numberWithCommas(current.zhong_zheng_bao_xian_jin) || '- - ') + '元')
+                $('#zhong_zheng_bao_xian_jin').text(zeroFormatter(numberWithCommas(current.zhong_zheng_bao_xian_jin.toFixed(2))) + '元')
                 
                 // 中症豁免保险费
                 if (params.zhong_zhen_bao_xian_jin_ji_zhong_zhen_huo_mian_bao_xian_fei === 'false') {
                     $('.zhong_zheng_huo_mian_bao_xian_jin').text('- - 元')
                 } else {
-                    $('.zhong_zheng_huo_mian_bao_xian_jin').text((numberWithCommas(current.qing_zheng_huo_zhong_zheng_huo_mian_bao_xian_jin) || '- - ') + '元')
+                    $('.zhong_zheng_huo_mian_bao_xian_jin').text(zeroFormatter(numberWithCommas(current.qing_zheng_huo_zhong_zheng_huo_mian_bao_xian_jin.toFixed(2))) + '元')
                 }
                 
                 // 额外重大疾病保险金
-                $('#e_wai_zhong_da_ji_bing_bao_xian_jin').text((numberWithCommas(current.e_wai_zhong_da_ji_bing_bao_xian_jin) || '- - ') + '元')
+                $('#e_wai_zhong_da_ji_bing_bao_xian_jin').text((zeroFormatter(numberWithCommas(current.e_wai_zhong_da_ji_bing_bao_xian_jin.toFixed(2)))) + '元')
             }
 
             // 重新试算
