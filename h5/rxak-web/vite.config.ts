@@ -2,7 +2,7 @@
  * @Author: wangce 1546985690@qq.com
  * @Date: 2024-12-04 08:38:38
  * @LastEditors: wangce 1546985690@qq.com
- * @LastEditTime: 2024-12-04 15:20:41
+ * @LastEditTime: 2024-12-09 17:05:49
  * @Description:
  * @FilePath: \rxak-web\vite.config.ts
  */
@@ -13,6 +13,7 @@ import path from 'path'
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: './',
   plugins: [vue()],
   resolve: {
     alias: {

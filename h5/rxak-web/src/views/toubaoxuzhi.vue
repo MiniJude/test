@@ -2,7 +2,7 @@
  * @Author: wangce 1546985690@qq.com
  * @Date: 2024-12-06 14:14:11
  * @LastEditors: wangce 1546985690@qq.com
- * @LastEditTime: 2024-12-09 11:57:14
+ * @LastEditTime: 2024-12-17 11:38:12
  * @Description: 投保须知
  * @FilePath: \rxak-web\src\views\toubaoxuzhi.vue
 -->
@@ -54,7 +54,7 @@
                 <!-- 非终身 -->
                 <tr>
                     <td>5年</td>
-                    <td rowspan="5">至被保险人年满80周岁后的首页保单周年日</td>
+                    <td rowspan="5">至被保险人年满80周岁后的首个保单周年日</td>
                     <td rowspan="5">出生满30日(含)-30周岁</td>
                 </tr>
                 <tr>
