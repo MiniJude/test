@@ -37,7 +37,7 @@
 }
 
 .tooltip {
-    padding: .4rem 1rem;
+    padding: .4rem .5rem;
     font-size: 1rem;
     color: rgba(245, 137, 0, 1);
     background: #FFF5D7;

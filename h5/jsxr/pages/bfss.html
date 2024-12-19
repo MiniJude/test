@@ -270,7 +270,8 @@
         </div>
         <div class="form_item" style="margin-bottom: 0.8rem">
           <div class="form_item_label">基本保险金额</div>
-          <input type="number" name="amount" placeholder="请输入金额" />
+          <input id="amount" type="number" name="amount" placeholder="请输入金额" />
+          <div id="amount_text" style="display: none; width: 16.5rem; font-size: 1.3rem; color: #2d2d2d; height: 2rem; line-height: 2rem; font-weight: 400"></div>
           <div class="form_item_unit">元</div>
         </div>
       </form>
@@ -281,7 +282,7 @@
       function init() {
         // 向年龄select中插入年龄选项
         for (let i = 0; i <= 57; i++) {
-          $('select[name="age"]').append(`<option value="${i}">${i}岁</option>`);
+          $('select[name="age"]').append(`<option value="${i}">${i}周岁</option>`);
         }
       }
 
