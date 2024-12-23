@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>数据统计</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      .container {
+        padding: 20px;
+      }
+      h1 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+      table,
+      th,
+      td {
+        border: 1px solid #ddd;
+      }
+      th,
+      td {
+        padding: 10px;
+        text-align: center;
+      }
+      th {
+        background-color: #f4f4f4;
+      }
+      .export-btn {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        padding: 10px 15px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+      .export-btn:hover {
+        background-color: #45a049;
+      }
+      @media (max-width: 768px) {
+        .container {
+          padding: 10px;
+        }
+        table {
+          font-size: 14px;
+        }
+        .export-btn {
+          top: 10px;
+          right: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>数据统计</h1>
+      <button class="export-btn" onclick="exportTableToExcel()">导出为Excel</button>
+
+      <table id="statsTable">
+        <thead>
+          <tr>
+            <th>按钮名称</th>
+            <th>点击次数</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody">
+          <!-- 表格数据将动态插入 -->
+        </tbody>
+      </table>
+    </div>
+
+    <script>
+      // 模拟接口请求获取按钮点击次数
+      function getList() {
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            resolve({
+              button1Count: 10,
+              button2Count: 20,
+            });
+          }, 1000);
+        });
+      }
+
+      // 页面初始化时从接口获取数据并更新DOM
+      async function init() {
+        const tableBody = document.getElementById("tableBody");
+
+        // 获取数据
+        const data = await getList();
+
+        // 拼接表格内容
+        const rows = `
+            <tr>
+                <td>按钮1</td>
+                <td id="button1Count">${data.button1Count}</td>
+            </tr>
+            <tr>
+                <td>按钮2</td>
+                <td id="button2Count">${data.button2Count}</td>
+            </tr>
+        `;
+
+        // 插入表格内容
+        tableBody.innerHTML = rows;
+      }
+
+      // 导出表格为Excel
+      function exportTableToExcel() {
+        const table = document.getElementById("statsTable");
+
+        // 使用 SheetJS 将 HTML 表格转为 Excel
+        const wb = XLSX.utils.table_to_book(table, { sheet: "数据统计" });
+
+        // 获取工作表
+        const ws = wb.Sheets["数据统计"];
+
+        // 设置列宽
+        ws["!cols"] = [{ wch: 20 }, { wch: 20 }];
+
+        // 导出为 Excel 文件
+        XLSX.writeFile(wb, "数据统计.xlsx");
+      }
+
+      // 初始化页面
+      init();
+    </script>
+  </body>
+</html>
