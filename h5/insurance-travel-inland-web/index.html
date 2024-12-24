@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>旅行意外险</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    .btn1 {
+      position: absolute;
+      top: 75rem;
+      left: 50%;
+      width: 18rem;
+      height: 5rem;
+      transform: translateX(-50%);
+      border-radius: 2rem;
+    }
+
+    .btn2 {
+      position: absolute;
+      top: 191.5rem;
+      left: 50%;
+      width: 18rem;
+      height: 5rem;
+      transform: translateX(-50%);
+      border-radius: 2rem;
+    }
+  </style>
+</head>
+
+<body>
+  <img width="100%" src="./assets/home.jpg" alt="" />
+  <div class="btn1" data-id="travel-insurance-btn--1" data-name="立即领取1" onclick="handleTrack(event, handleClick)"></div>
+  <div class="btn2" data-id="travel-insurance-btn--2" data-name="立即领取2" onclick="handleTrack(event, handleClick)"></div>
+  <script src="./setRemBase.js"></script>
+  <script>
+    const SYS_NAME = "travel-insurance";
+    const JUMP_URI = "https://elife.ccb-life.com.cn/elife-card/#/card/card-info/KDPC126220241220004"
+
+    // 时间格式化
+    function getCurrentTime() {
+      const date = new Date();
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, "0"); // 月份从0开始，需加1
+      const day = String(date.getDate()).padStart(2, "0");
+      const hours = String(date.getHours()).padStart(2, "0");
+      const minutes = String(date.getMinutes()).padStart(2, "0");
+      const seconds = String(date.getSeconds()).padStart(2, "0");
+
+      return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+    }
+
+    // 防抖
+    function debounce(fn, delay) {
+      let timer = null;
+      return function () {
+        if (timer) {
+          clearTimeout(timer);
+        }
+        timer = setTimeout(() => {
+          fn.apply(this, arguments);
+        }, delay);
+      };
+    }
+
+    // 埋点请求
+    function track(data) {
+      const eventData = {
+        sysName: SYS_NAME,
+        eventName: "click",
+        eventTargetId: "",
+        eventTargetName: "",
+        time: getCurrentTime(),
+      };
+
+      fetch("http://dev.wangyijie.net:18082/mai-dian/tracking", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ ...eventData, ...data }),
+      });
+    }
+
+    // 对埋点请求进行防抖包裹
+    const debounceTrack = debounce(track, 500);
+
+    // 埋点处理
+    function handleTrack(e, fn) {
+      const eventTargetId = e.target.dataset.id;
+      const eventTargetName = e.target.dataset.name;
+      debounceTrack({ eventTargetId, eventTargetName });
+      fn?.();
+    }
+
+    // 按钮点击事件
+    function handleClick() {
+      window.location.href = JUMP_URI;
+    }
+  </script>
+</body>
+
+</html>
