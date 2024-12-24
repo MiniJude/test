@@ -130,16 +130,16 @@
       const table = document.getElementById("statsTable");
 
       // 使用 SheetJS 将 HTML 表格转为 Excel
-      const wb = XLSX.utils.table_to_book(table, { sheet: "数据统计" });
+      const wb = XLSX.utils.table_to_book(table, { sheet: "旅行意外险埋点数据统计" });
 
       // 获取工作表
-      const ws = wb.Sheets["数据统计"];
+      const ws = wb.Sheets["旅行意外险埋点数据统计"];
 
       // 设置列宽
       ws["!cols"] = [{ wch: 20 }, { wch: 20 }];
 
       // 导出为 Excel 文件
-      XLSX.writeFile(wb, "数据统计.xlsx");
+      XLSX.writeFile(wb, "旅行意外险埋点数据统计.xlsx");
     }
 
     // 初始化页面

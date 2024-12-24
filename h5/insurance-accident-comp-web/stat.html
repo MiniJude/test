@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>数据统计</title>
+  <title>综合意外保埋点数据统计</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
   <style>
     body {
@@ -79,7 +79,7 @@
 
 <body>
   <div class="container">
-    <h1>数据统计</h1>
+    <h1>综合意外保埋点数据统计</h1>
     <button class="export-btn" onclick="exportTableToExcel()">导出为Excel</button>
 
     <table id="statsTable">
@@ -96,7 +96,7 @@
   </div>
 
   <script>
-    const SYS_NAME = "travel-insurance";
+    const SYS_NAME = "insurance-accident-comp-web";
 
     // 模拟接口请求获取按钮点击次数
     function getList() {
@@ -130,16 +130,16 @@
       const table = document.getElementById("statsTable");
 
       // 使用 SheetJS 将 HTML 表格转为 Excel
-      const wb = XLSX.utils.table_to_book(table, { sheet: "数据统计" });
+      const wb = XLSX.utils.table_to_book(table, { sheet: "综合意外保埋点数据统计" });
 
       // 获取工作表
-      const ws = wb.Sheets["数据统计"];
+      const ws = wb.Sheets["综合意外保埋点数据统计"];
 
       // 设置列宽
       ws["!cols"] = [{ wch: 20 }, { wch: 20 }];
 
       // 导出为 Excel 文件
-      XLSX.writeFile(wb, "数据统计.xlsx");
+      XLSX.writeFile(wb, "综合意外保埋点数据统计.xlsx");
     }
 
     // 初始化页面

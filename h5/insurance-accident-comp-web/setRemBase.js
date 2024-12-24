@@ -4,6 +4,9 @@ function setRemBase() {
   const screenWidth = Math.min(window.innerWidth, 750); // 最大限制宽度为 750px（避免大屏过大）
   document.documentElement.style.fontSize =
     (screenWidth / designWidth) * baseSize + "px";
+  
+  console.log("当前屏幕宽度：" + screenWidth);
+  
 }
 
 // 初始化
