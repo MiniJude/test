@@ -2,7 +2,7 @@
  * @Author: wangce 1546985690@qq.com
  * @Date: 2024-12-04 16:28:34
  * @LastEditors: wangce 1546985690@qq.com
- * @LastEditTime: 2024-12-09 14:23:45
+ * @LastEditTime: 2024-12-25 13:59:17
  * @Description: 
  * @FilePath: \rxak-web\src\views\form.vue
 -->
@@ -33,7 +33,7 @@
                 <div class="ipt_wrapper">
                     <select style="flex: 1;" name="age" required v-model="formData.age">
                         <option disabled selected hidden value="">请选择年龄</option>
-                        <option v-for="i in 58" :value="i - 1">{{ i - 1 }}岁</option>
+                        <option v-for="i in 61" :value="i - 1">{{ i - 1 }}岁</option>
                     </select>
                     <span class="my_placeholder" v-if="formData.age < 0">请选择年龄</span>
                 </div>
@@ -190,8 +190,7 @@ const showToubaoxuzhiModal = ref(false)
 // 产品条款下载
 function downloadPDF() {
     // PDF 文件的相对路径
-    const pdfUrl = '/《建信人寿瑞享安康重大疾病保险》保险条款.pdf'; // 这里是相对于 public 目录的路径
-
+    const pdfUrl = import.meta.env.VITE_BASE_URL + '/《建信人寿瑞享安康重大疾病保险》保险条款.pdf'; // 这里是相对于 public 目录的路径
     // 创建一个临时的 <a> 标签来触发下载
     const link = document.createElement('a');
     link.href = pdfUrl;
