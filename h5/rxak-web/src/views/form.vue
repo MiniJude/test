@@ -2,7 +2,7 @@
  * @Author: wangce 1546985690@qq.com
  * @Date: 2024-12-04 16:28:34
  * @LastEditors: wangce 1546985690@qq.com
- * @LastEditTime: 2024-12-25 13:59:17
+ * @LastEditTime: 2024-12-25 14:19:23
  * @Description: 
  * @FilePath: \rxak-web\src\views\form.vue
 -->
@@ -190,7 +190,7 @@ const showToubaoxuzhiModal = ref(false)
 // 产品条款下载
 function downloadPDF() {
     // PDF 文件的相对路径
-    const pdfUrl = import.meta.env.VITE_BASE_URL + '/《建信人寿瑞享安康重大疾病保险》保险条款.pdf'; // 这里是相对于 public 目录的路径
+    const pdfUrl = import.meta.env.VITE_PUBLICK_BASE_URL + '/《建信人寿瑞享安康重大疾病保险》保险条款.pdf'; // 这里是相对于 public 目录的路径
     // 创建一个临时的 <a> 标签来触发下载
     const link = document.createElement('a');
     link.href = pdfUrl;
