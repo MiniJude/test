@@ -6,7 +6,7 @@
  * @Description: 
  * @FilePath: \rxak-web\index.html
 -->
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -15,6 +15,71 @@
   </head>
   <body>
     <div id="app"></div>
+    <script src="js/jquery.min.js"></script>
     <script type="module" src="/src/main.ts"></script>
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script>
+      var url = document.location.protocol + "//xb.fatangmedia.com/pro2021/php/jsshare/indexs.php";
+      if (window.location.host == "localhost") {
+      } else {
+        $.ajax({
+          url: url,
+          type: "get",
+          data: { gUrl: window.location.href, mId: 1 },
+          dataType: "json",
+          success: function (data) {
+            if (data) {
+              setWxShare(data["appId"], data["timestamp"], data["nonceStr"], data["signature"]);
+            }
+          },
+          error: function (XMLHttpRequest, textStatus, errorThrown) {
+            console.log(XMLHttpRequest);
+          },
+        });
+      }
+
+      var myTitle = "建信人寿瑞享安康重大疾病保险";
+      var myDesc = "瑞享福泽 安康无忧";
+      var myUrl = window.location.href;
+      var shareImg = "https://c.fatangmedia.com/2024/12/rxak-web/sIcon.jpg";
+      console.log("myUrl = " + myUrl);
+      console.log("shareImg = " + shareImg);
+
+      function setWxShare(appId0, timestamp0, nonceStr0, signature0) {
+        wx.config({
+          debug: false,
+          appId: appId0,
+          timestamp: timestamp0,
+          nonceStr: nonceStr0,
+          signature: signature0,
+          jsApiList: ["onMenuShareTimeline", "onMenuShareAppMessage", "hideMenuItems"],
+          openTagList: ["wx-open-launch-weapp"], // 可选，需要使用的开放标签列表，例如['wx-open-launch-app']
+        });
+        wx.ready(function () {
+          wx.hideMenuItems({
+            menuList: ["menuItem:copyUrl", "menuItem:openWithQQBrowser", "menuItem:openWithSafari"],
+          });
+
+          wx.onMenuShareTimeline({
+            title: myTitle,
+            link: myUrl,
+            imgUrl: shareImg,
+            success: function () {},
+            cancel: function () {},
+          });
+          wx.onMenuShareAppMessage({
+            title: myTitle,
+            desc: myDesc,
+            link: myUrl,
+            imgUrl: shareImg,
+            success: function () {},
+            cancel: function () {},
+          });
+        });
+        wx.error(function (res) {
+          //  alert('wx.error: '+JSON.stringify(res));
+        });
+      }
+    </script>
   </body>
 </html>
