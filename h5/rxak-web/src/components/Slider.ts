@@ -124,7 +124,7 @@ export class Slider {
 
     // 更新提示文字
     if (this.tooltip) {
-      this.tooltip.textContent = `${this.value}岁`;
+      this.tooltip.textContent = `${this.value}周岁`;
       this.tooltip.style.left = `${percent}%`;
     }
 

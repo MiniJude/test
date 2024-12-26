@@ -33,7 +33,7 @@
                 <div class="ipt_wrapper">
                     <select style="flex: 1;" name="age" required v-model="formData.age">
                         <option disabled selected hidden value="">请选择年龄</option>
-                        <option v-for="i in 61" :value="i - 1">{{ i - 1 }}岁</option>
+                        <option v-for="i in 61" :value="i - 1">{{ i - 1 }}周岁</option>
                     </select>
                     <span class="my_placeholder" v-if="formData.age < 0">请选择年龄</span>
                 </div>

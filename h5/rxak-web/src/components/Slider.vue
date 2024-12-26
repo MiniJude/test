@@ -136,8 +136,10 @@ onMounted(() => {
 }
 
 .tooltip {
-    width: 42px;
-    height: 23px;
+    width: 60px;
+    height: 25px;
+    white-space: nowrap;
+    padding: 0 6px;
     display: inline-block;
     line-height: 20px;
     text-align: center;
@@ -148,6 +150,6 @@ onMounted(() => {
     bottom: 14px;
     left: 0;
     transform: translateX(-50%);
-    background: url('@/assets/svg/img_Mask.svg') no-repeat center / 100%;
+    background: url('@/assets/svg/img_Mask.svg') no-repeat center / contain;
 }
 </style>

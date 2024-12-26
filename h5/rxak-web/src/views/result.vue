@@ -66,7 +66,7 @@
         <div class="btn_b" @click="showLiYiYanShiModal = true">查看利益演示表</div>
         <div class="btn_group">
             <div class="btn_s" @click="router.push('/form')">重新试算</div>
-            <div class="btn_s submit_btn" @click="showToast('敬请期待')">立即投保</div>
+            <div class="btn_s submit_btn" @click="showToast('敬请期待')">计划书</div>
         </div>
         <van-overlay :show="showToubaoxuzhiModal" :lock-scroll="false">
             <div class="modal-wrapper">
