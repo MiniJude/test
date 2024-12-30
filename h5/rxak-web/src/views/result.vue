@@ -66,7 +66,7 @@
         <div class="btn_b" @click="showLiYiYanShiModal = true">查看利益演示表</div>
         <div class="btn_group">
             <div class="btn_s" @click="router.push('/form')">重新试算</div>
-            <div class="btn_s submit_btn" @click="showToast('敬请期待')">计划书</div>
+            <div class="btn_s submit_btn" @click="handleGeneratePdf">计划书</div>
         </div>
         <van-overlay :show="showToubaoxuzhiModal" :lock-scroll="false">
             <div class="modal-wrapper">
@@ -94,7 +94,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref } from 'vue';
+import { computed, ref, toRaw } from 'vue';
 import axios from 'axios';
 import Modal from '@/components/Modal.vue';
 import Toubaoxuzhi from '@/views/toubaoxuzhi.vue';
@@ -103,6 +103,7 @@ import { useRoute, useRouter } from 'vue-router';
 import { showFailToast, showToast } from 'vant';
 import { InsuranceType, ResultType } from '@/types';
 import Liyiyanshi from './liyiyanshi.vue';
+import { generatePdf } from '@/utils';
 
 const route = useRoute()
 const router = useRouter()
@@ -156,6 +157,20 @@ const currentYearResult = computed(() => {
 
 // 利益演示表
 const showLiYiYanShiModal = ref(false)
+
+// pdf生产
+function handleGeneratePdf() {
+    generatePdf({
+        age: params.age,
+        name: params.user_name,
+        sex: params.sex === 'M' ? '男' : '女',
+        nianJiaoBaoXianFei: result.value?.nianJiaoBaoXianFei?.toFixed(2) || '',
+        jiao_fei_qi_jian: params.jiao_fei_qi_jian,
+        shen_gu_bao_xian_jin: params.shen_gu_bao_xian_jin,
+        bao_xian_qi_jian: params.bao_xian_qi_jian,
+        arr: toRaw(result.value?.xianJinJiaZhiBiaoList)
+    })
+}
 
 </script>
 
