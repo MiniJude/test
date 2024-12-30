@@ -103,7 +103,7 @@ import { useRoute, useRouter } from 'vue-router';
 import { showFailToast, showToast } from 'vant';
 import { InsuranceType, ResultType } from '@/types';
 import Liyiyanshi from './liyiyanshi.vue';
-import { generatePdf } from '@/utils';
+// import { generatePdf } from '@/utils';
 
 const route = useRoute()
 const router = useRouter()
@@ -171,7 +171,7 @@ async function handleGeneratePdf() {
     //     arr: toRaw(result.value?.xianJinJiaZhiBiaoList)
     // })
 
-    const res = await axios.post('http://192.168.31.212:3000/pdf/download', {
+    const res = await axios.post('http://47.96.80.187:3000/pdf/download', {
         age: params.age,
         name: params.user_name,
         sex: params.sex === 'M' ? '男' : '女',
