@@ -200,7 +200,7 @@ async function handleGeneratePdf() {
 
 
     // 下载res.downloadurl
-    window.open(res.data.downloadUrl.replace('http://192.168.31.212:3000', 'http://47.96.80.187:3000/'), '_blank')
+    window.open(res.data.downloadUrl.replace('http://192.168.31.212:3000', 'http://47.96.80.187:3000'), '_blank')
 }
 
 </script>
