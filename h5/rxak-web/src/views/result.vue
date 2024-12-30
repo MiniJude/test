@@ -36,7 +36,7 @@
             </template>
             <div class="age_tip">被保险人年末年龄为 {{ currentYearResult?.nianMoNianLing }} 周岁时（即第{{
                 currentYearResult?.baoDanNianDu
-            }}保单年度）</div>
+                }}保单年度）</div>
 
             <div class="form_item">
                 <div class="form_item_label">已交保险费（累计）</div>
@@ -159,8 +159,19 @@ const currentYearResult = computed(() => {
 const showLiYiYanShiModal = ref(false)
 
 // pdf生产
-function handleGeneratePdf() {
-    generatePdf({
+async function handleGeneratePdf() {
+    // generatePdf({
+    //     age: params.age,
+    //     name: params.user_name,
+    //     sex: params.sex === 'M' ? '男' : '女',
+    //     nianJiaoBaoXianFei: result.value?.nianJiaoBaoXianFei?.toFixed(2) || '',
+    //     jiao_fei_qi_jian: params.jiao_fei_qi_jian,
+    //     shen_gu_bao_xian_jin: params.shen_gu_bao_xian_jin,
+    //     bao_xian_qi_jian: params.bao_xian_qi_jian,
+    //     arr: toRaw(result.value?.xianJinJiaZhiBiaoList)
+    // })
+
+    const res = await axios.post('http://192.168.31.212:3000/pdf/download', {
         age: params.age,
         name: params.user_name,
         sex: params.sex === 'M' ? '男' : '女',
@@ -170,6 +181,26 @@ function handleGeneratePdf() {
         bao_xian_qi_jian: params.bao_xian_qi_jian,
         arr: toRaw(result.value?.xianJinJiaZhiBiaoList)
     })
+    // // 创建 Blob 对象
+    // const blob = new Blob([res.data], { type: 'application/pdf' });
+
+    // // 创建临时下载链接
+    // const url = window.URL.createObjectURL(blob);
+    // const link = document.createElement('a');
+    // link.href = url;
+    // link.download = '保单数据表.pdf'; // 或者从响应头中获取文件名
+
+    // // 触发下载
+    // document.body.appendChild(link);
+    // link.click();
+
+    // // 清理
+    // document.body.removeChild(link);
+    // window.URL.revokeObjectURL(url);
+
+
+    // 下载res.downloadurl
+    window.open(res.data.downloadUrl, '_blank')
 }
 
 </script>
