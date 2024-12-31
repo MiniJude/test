@@ -171,7 +171,6 @@ async function handleGeneratePdf() {
     //     arr: toRaw(result.value?.xianJinJiaZhiBiaoList)
     // })
 
-    const windowReference = window.open('', '_blank');
 
     const res = await axios.post('http://47.96.80.187:3000/pdf/download', {
         age: params.age,
@@ -204,7 +203,13 @@ async function handleGeneratePdf() {
     // 下载res.downloadurl
     // window.open(res.data.downloadUrl.replace('http://192.168.31.212:3000', 'http://47.96.80.187:3000'), '_blank')
 
-    windowReference!.location = res.data.downloadUrl.replace('http://192.168.31.212:3000', 'http://47.96.80.187:3000');
+    // window.location.href = res.data.downloadUrl.replace('http://192.168.31.212:3000', 'http://47.96.80.187:3000');
+
+    let a = document.createElement('a');
+    a.setAttribute('href', res.data.downloadUrl.replace('http://192.168.31.212:3000', 'http://47.96.80.187:3000'));
+    document.body.appendChild(a);
+    a.click();
+    a.remove()
 }
 
 </script>
