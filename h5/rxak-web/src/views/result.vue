@@ -36,7 +36,7 @@
             </template>
             <div class="age_tip">被保险人年末年龄为 {{ currentYearResult?.nianMoNianLing }} 周岁时（即第{{
                 currentYearResult?.baoDanNianDu
-                }}保单年度）</div>
+            }}保单年度）</div>
 
             <div class="form_item">
                 <div class="form_item_label">已交保险费（累计）</div>
@@ -171,6 +171,8 @@ async function handleGeneratePdf() {
     //     arr: toRaw(result.value?.xianJinJiaZhiBiaoList)
     // })
 
+    const windowReference = window.open('', '_blank');
+
     const res = await axios.post('http://47.96.80.187:3000/pdf/download', {
         age: params.age,
         name: params.user_name,
@@ -200,7 +202,9 @@ async function handleGeneratePdf() {
 
 
     // 下载res.downloadurl
-    window.open(res.data.downloadUrl.replace('http://192.168.31.212:3000', 'http://47.96.80.187:3000'), '_blank')
+    // window.open(res.data.downloadUrl.replace('http://192.168.31.212:3000', 'http://47.96.80.187:3000'), '_blank')
+
+    windowReference!.location = res.data.downloadUrl.replace('http://192.168.31.212:3000', 'http://10.6.132.22:3000');
 }
 
 </script>
