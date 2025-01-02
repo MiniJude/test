@@ -1,9 +1,0 @@
-// {
-//     "liveServer.settings.proxy": {
-//         "/toubao": {
-//             "target": "http://dev.wangyijie.net:18080",
-//             "changeOrigin": true,
-//             "secure": false
-//         }
-//     }
-// }
